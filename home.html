@@ -8,11 +8,134 @@
     </head>
 
     <body>
-        <h1 id="welcomeText">Loading Welcome Text...</h1>
-        <p class="pointsText">Loading points...</p>
+        <a href="dashboard.html" class="profile-icon">
+            <img src="assets/images/ProfileIcon.png" alt="profile icon">
+        </a>
 
-        <a href="leaderboard.html"><button>View Leaderboard</button></a>
-        <button class="logoutBtn">Log out</button>
+        
+        <h1>Season 1: Revive 249 Schools</h1>
+        <section class="season-intro">
+            <h4>Season 1: Back to School Readiness</h4>
+            <p>
+            This season, we're coming together to make schools more welcoming, functional, and fun.
+            Help create spaces where students feel proud and excited to learn, every small action counts
+            </p>
+        </section>
+
+        <h3>Featured Missions</h3>
+        <div class="missions-scroll">
+            
+            <div class="mission-card">
+              <h5>Paint Classroom</h5>
+              <p>🪙 25 points</p>
+              <button>Start Mission</button>
+            </div>
+
+            <div class="mission-card">
+              <h5>Add School to Google Maps</h5>
+              <p>🪙 10 points</p>
+              <button>Start Mission</button>
+            </div>
+
+            <div class="mission-card">
+                <h5>Clean Classrooms & Yards</h5>
+                <p>🪙 25 points</p>
+                <button type="submit">Start Mission</button>
+            </div>
+        
+            <div class="mission-card">
+              <h5>Donate School Supplies</h5>
+              <p>🪙 15 points</p>
+              <button>Start Mission</button>
+            </div>
+
+            <div class="mission-card">
+              <h5>Support School Meals</h5>
+              <p>🪙 20 points</p>
+              <button>Start Mission</button>
+            </div>
+
+            <div class="mission-card">
+              <h5>Decorate School</h5>
+              <p>🪙 15 points</p>
+              <button>Start Mission</button>
+            </div>
+        </div>
+        
+
+
+
+        <h3>Started Missions</h3>
+
+        <div class="started-missions">
+        
+          <div class="started-mission">
+            <p class="mission-name">Paint School Walls</p>
+            <button type="button" class="complete-btn">Mission Completed</button>
+          </div>
+      
+          <div class="started-mission">
+            <p class="mission-name">Clean Up School</p>
+            <button type="button" class="complete-btn">Mission Completed</button>
+          </div>
+      
+        </div>
+
+
+
+
+
+        <section class="leaderboard-spotlight">
+          <h3>Leaderboard Spotlight</h3>
+        
+          <div class="leaderboard-grid">
+        
+            <div class="leaderboard-card">
+              <img src="pfp1.png" alt="Agent" class="pfp">
+              <div class="card-info">
+                <strong>Aisha Ahmed</strong>
+                <p>25 points</p>
+              </div>
+            </div>
+        
+            <div class="leaderboard-card">
+              <img src="pfp2.png" alt="Agent" class="pfp">
+              <div class="card-info">
+                <strong>Ali Musa</strong>
+                <p>22 points</p>
+              </div>
+            </div>
+        
+            <div class="leaderboard-card">
+              <img src="pfp3.png" alt="Agent" class="pfp">
+              <div class="card-info">
+                <strong>Sarah Idris</strong>
+                <p>21 points</p>
+              </div>
+            </div>
+        
+            <div class="leaderboard-card">
+              <img src="pfp4.png" alt="Agent" class="pfp">
+              <div class="card-info">
+                <strong>Khalid Osman</strong>
+                <p>20 points</p>
+              </div>
+            </div>
+        
+          </div> <!-- End of .leaderboard-grid -->
+        
+          <button onclick="window.location.href='leaderboard.html'">View Full Leaderboard</button>
+        </section>
+
+
+
+        <nav class="bottom-nav">
+          <a href="home.html" class="nav-item">Home</a>
+          <a href="leaderboard.html" class="nav-item">Leaderboard</a>
+          <a href="missions.html" class="nav-item">Missions</a>
+          <a href="map.html" class="nav-item">Map</a>
+          <a href="dashboard.html" class="nav-item">Dashboard</a>
+        </nav>
 
         <script src="js/home.js" defer></script>
     </body>
