@@ -1,21 +1,22 @@
-// Initialize the map
-function initMap() {
+// Initialize the map when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Create map with Sudan bounds
     const map = L.map('map', {
         minZoom: 5,
         maxZoom: 18,
         zoomSnap: 0.5,
         maxBounds: [
             [8.5, 20.5],  // Southwest
-            [23.5, 38.5]  // Northeast
+            [23.5, 38.5]   // Northeast
         ]
     }).setView([17.6, 33.9], 6);
 
-    // Load OpenStreetMap tile layer
+    // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    // Define custom icons
+    // Custom icons
     const missionIcon = L.icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/1055/1055646.png',
         iconSize: [32, 32],
@@ -30,7 +31,7 @@ function initMap() {
         popupAnchor: [0, -28]
     });
 
-    // Mission data
+    // Completed missions data
     const missions = [
         { name: "المهمة 1: تنظيف ساحة المدرسة", lat: 15.6, lng: 32.5, status: "✅ تم إكمال المهمة" },
         { name: "المهمة 2: طلاء الفصول", lat: 17.0, lng: 33.8, status: "✅ تم إكمال المهمة" },
@@ -40,7 +41,7 @@ function initMap() {
         { name: "المهمة 6: إصلاح مقاعد الطلاب", lat: 12.0, lng: 29.8, status: "✅ تم إكمال المهمة" }
     ];
 
-    // Team data
+    // Teams looking for members
     const teams = [
         { name: "🐢 سلاحف النينجا - جاهزون لانضمامك!", lat: 15.6, lng: 32.6, status: "يبحث عن أعضاء 🤝" },
         { name: "💪 فتيات القوة - انضمي إلينا", lat: 15.7, lng: 32.55, status: "يبحث عن أعضاء 🤝" },
@@ -62,7 +63,4 @@ function initMap() {
             .addTo(map)
             .bindPopup(`<b>${t.name}</b><br>${t.status}`);
     });
-}
-
-// Initialize the map when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initMap);
+});
