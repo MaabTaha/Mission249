@@ -33,7 +33,7 @@ form.addEventListener('submit', function (e) {
   if (userExists) {
     showMessage('Username already taken.');
   } else {
-    users.push({ username, points: 0 });
+    users.push({ username, points: 0, startedMissions: []  });
     saveUsers(users);
     localStorage.setItem('currentUser', username);
     showMessage('Account created! Redirecting...', false);

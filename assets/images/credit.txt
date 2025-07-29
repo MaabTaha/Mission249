@@ -1,2 +1,10 @@
 https://icons8.com/icons/set/profile--style-dusk
 <a target="_blank" href="https://icons8.com/icon/txmnrJwlctOz/test-account">Test Account</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+
+https://icons8.com/icons/set/facebook-logo
+<a target="_blank" href="https://icons8.com/icon/uLWV5A9vXIPu/facebook">Facebook Logo</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+
+https://icons8.com/icons/set/facebook-logo
+<a target="_blank" href="https://icons8.com/icon/Xy10Jcu1L2Su/instagram">Instagram Logo</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
