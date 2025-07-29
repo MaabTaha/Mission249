@@ -3,57 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard - Mission 249</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/template.css" />
 </head>
 <body>
-  <!-- Back Button (optional)-->
-  <a href="home.html" class="back-btn">←</a>
-  <br>
-
-  <!-- Profile Section -->
-  <div class="profile-section">
-    <img src="assets/images/ProfileIcon.png" alt="Profile Icon" class="profile-pic" />
-    <p class="username" id="usernameDisplay">Username</p>
-    <p class="location">الموقع: السما الاحمر</p>
-    <div class="social-icons">
-      <img src="assets/images/instagram_icon.png" alt="Instagram" class="social-media-icon" />
-      <img src="assets/images/facebook_icon.png" alt="Facebook" class="social-media-icon" />
+  <div class="app-container">
+    <!-- Back Button (optional)-->
+    <a href="home.html" class="back-btn">←</a>
+    <br>
+    
+    <!-- Profile Section -->
+    <div class="profile-section">
+      <img src="assets/images/ProfileIcon.png" alt="Profile Icon" class="profile-pic" />
+      <p class="username" id="usernameDisplay">Username</p>
+      <p class="location">الموقع: السما الاحمر</p>
+      <div class="social-icons">
+        <img src="assets/images/instagram_icon.png" alt="Instagram" class="social-media-icon" />
+        <img src="assets/images/facebook_icon.png" alt="Facebook" class="social-media-icon" />
+      </div>
     </div>
+  
+    <!-- Overview Section -->
+    <h3>Overview</h3>
+    <div class="overview-container">
+      <div class="overview-card">
+        <h4>Points</h4>
+        <h2 id="pointsDisplay">0</h2>
+      </div>
+      <div class="overview-card">
+        <h4>Completed Missions</h4>
+        <h2 id="completedCount">0</h2>
+      </div>
+      <div class="overview-card">
+        <h4>Leaderboard Position</h4>
+        <h2 id="rankDisplay">#--</h2>
+      </div>
+    </div>
+  
+    <!-- Completed Missions Section -->
+    <h3>Completed Missions</h3>
+    <ul id="completedList" class="completed-missions-list">
+      <!-- JS will populate this -->
+    </ul>
+  
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="home.html" class="nav-item">Home</a>
+      <a href="leaderboard.html" class="nav-item">Leaderboard</a>
+      <a href="missions.html" class="nav-item">Missions</a>
+      <a href="map.html" class="nav-item">Map</a>
+      <a href="dashboard.html" class="nav-item active">Dashboard</a>
+    </nav>
+  
+    <script src="js/dashboard.js" defer></script>
   </div>
-
-  <!-- Overview Section -->
-  <h3>Overview</h3>
-  <div class="overview-container">
-    <div class="overview-card">
-      <h4>Points</h4>
-      <h2 id="pointsDisplay">0</h2>
-    </div>
-    <div class="overview-card">
-      <h4>Completed Missions</h4>
-      <h2 id="completedCount">0</h2>
-    </div>
-    <div class="overview-card">
-      <h4>Leaderboard Position</h4>
-      <h2 id="rankDisplay">#--</h2>
-    </div>
-  </div>
-
-  <!-- Completed Missions Section -->
-  <h3>Completed Missions</h3>
-  <ul id="completedList" class="completed-missions-list">
-    <!-- JS will populate this -->
-  </ul>
-
-  <!-- Bottom Navigation -->
-  <nav class="bottom-nav">
-    <a href="home.html" class="nav-item">Home</a>
-    <a href="leaderboard.html" class="nav-item">Leaderboard</a>
-    <a href="missions.html" class="nav-item">Missions</a>
-    <a href="map.html" class="nav-item">Map</a>
-    <a href="dashboard.html" class="nav-item active">Dashboard</a>
-  </nav>
-
-  <script src="js/dashboard.js" defer></script>
 </body>
 </html>
 

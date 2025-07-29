@@ -7,27 +7,27 @@ const missions = {
   "add-school": {
     name: "Add School to Google Maps",
     points: 10,
-    description: "Help others find your school by uploading its name, location, and photos to Google Maps."
+    description: "Help others find a school by uploading its name, location, and photos to Google Maps."
   },
   "clean-classrooms": {
     name: "Clean Classrooms & Yards",
     points: 25,
-    description: "Sweep, tidy, and freshen up classrooms and outdoor areas to prepare for the school year."
+    description: "Sweep floors, wash windows and boards, and tidy up indoor and outdoor spaces."
   },
   "donate-supplies": {
     name: "Donate School Supplies",
     points: 15,
-    description: "Collect or contribute notebooks, pens, or backpacks to support students in need."
+    description: "Collect or contribute notebooks, pens, backpacks, or notebooks to support students in need."
   },
   "support-meals": {
     name: "Support School Meals",
     points: 20,
-    description: "Donate food or assist in providing meals and snacks for students at school."
+    description: "Prepare a lunchbox, donate food or assist in providing meals and snacks for students at school."
   },
   "decorate-school": {
     name: "Decorate School",
     points: 15,
-    description: "Create colorful posters or art to make classrooms more lively and inspiring."
+    description: "Design colorful posters, paint murals, or plant flowers to make the school beautiful."
   }
 };
 
@@ -53,18 +53,6 @@ if (mission) {
     <h3>Team Bonus</h3>
     <p>If completed in a group: +10 bonus points</p>
 
-    <h3>Teams Looking for Members</h3>
-    <div id="groupList">
-      ${dummyGroups.map(group => `
-        <div class="team-row">
-          <span>${group.name} (${group.members} members)</span>
-          <a href="nearby-groups.html">
-            <button class="join-team-btn">Groups in your area</button>
-          </a>
-
-        </div>
-      `).join('')}
-    </div>
     
     <button id="createGroupBtn">Create Group</button>
     <button id="startBtn">Start Mission</button>
