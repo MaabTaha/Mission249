@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <title>Mission 249: خريطة مهام السودان</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="map.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهمة 249 - الخريطة</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/map.css">
 </head>
 <body>
+    <div class="app-container">
+        <a href="dashboard.html" class="profile-icon">
+            <img src="assets/images/ProfileIcon.png" alt="أيقونة الملف الشخصي">
+        </a>
 
-<div id="map"></div>
+        <h1>خريطة المهام</h1>
+        <section class="season-intro">
+            <h4>تتبع الفرق والمهام</h4>
+            <p>
+                استكشف المهام النشطة والفرق في جميع أنحاء السودان. انقر على العلامات لرؤية التفاصيل 
+                والانضمام إلى الفرق العاملة على مشاريع إحياء المدارس
+            </p>
+        </section>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<!-- Custom JS -->
-<script src="map.js"></script>
+        <div id="map" class="map-container"></div>
 
+        <h3>مفتاح الخريطة</h3>
+        <div class="legend">
+            <div class="legend-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" width="24" alt="أيقونة المهمة">
+                <span>مهمة مكتملة</span>
+            </div>
+            <div class="legend-item">
+                <img src="https://i.postimg.cc/gcRvmJZC/clipart1407097.png" width="24" alt="أيقونة الفريق">
+                <span>فريق يبحث عن أعضاء</span>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="home.html" class="nav-item">الرئيسية</a>
+            <a href="leaderboard.html" class="nav-item">تصنيف المتطوعين</a>
+            <a href="missions.html" class="nav-item">المهام</a>
+            <a href="map.html" class="nav-item active">الخريطة</a>
+            <a href="dashboard.html" class="nav-item">لوحتي</a>
+        </nav>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Custom JS -->
+    <script src="js/map.js"></script>
 </body>
 </html>
