@@ -1,11 +1,11 @@
 // 1. Create map and set view over Sudan
 const map = L.map('map', {
   minZoom: 5,
-  maxZoom: 18,
+  maxZoom: 18, // allow deep zoom
   zoomSnap: 0.5,
   maxBounds: [
-    [8.5, 20.5],
-    [23.5, 38.5]
+    [8.5, 20.5],  // Southwest
+    [23.5, 38.5]  // Northeast
   ]
 }).setView([17.6, 33.9], 6);
 
@@ -14,7 +14,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: ''
 }).addTo(map);
 
-// 3. Define custom icons
+// 3. Define custom icons for missions and teams
 const missionIcon = L.icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/1055/1055646.png',
   iconSize: [32, 32],
@@ -29,7 +29,7 @@ const teamIcon = L.icon({
   popupAnchor: [0, -28]
 });
 
-// 4. Define missions
+// 4. Define missions (completed)
 const missions = [
   { name: "المهمة الأولى: تنظيف ساحة المدرسة", lat: 15.6, lng: 32.5, status: "✅ تمت المهمة بنجاح" },
   { name: "المهمة الثانية: طلاء جدران الفصل", lat: 17.0, lng: 33.8, status: "✅ تمت المهمة بنجاح" },
@@ -39,7 +39,7 @@ const missions = [
   { name: "المهمة السادسة: إصلاح مقاعد الطلاب", lat: 12.0, lng: 29.8, status: "✅ تمت المهمة بنجاح" }
 ];
 
-// 5. Define teams
+// 5. Define teams looking for members
 const teams = [
   { name: "🐢 سلاحف النينجا — الفريق جاهز وينتظرك!", lat: 15.6, lng: 32.6, status: "ابحث عن فريق 🤝" },
   { name: "💪 فتيات القوة — نحتاج بطلة تنضم لينا", lat: 15.7, lng: 32.55, status: "ابحث عن فريق 🤝" },
@@ -48,19 +48,19 @@ const teams = [
   { name: "🦸‍♂️ فرقة الأبطال — في انتظار بطل جديد", lat: 19.1, lng: 30.5, status: "ابحث عن فريق 🤝" }
 ];
 
-// 6. Add markers for missions
+// 6. Add all missions to the map
 missions.forEach(m => {
   L.marker([m.lat, m.lng], { icon: missionIcon })
     .addTo(map)
     .bindPopup(`<b>${m.name}</b><br>${m.status}`);
 });
 
-// 7. Add markers for teams
+// 7. Add all teams to the map
 teams.forEach(t => {
   L.marker([t.lat, t.lng], { icon: teamIcon })
     .addTo(map)
     .bindPopup(`<b>${t.name}</b><br>${t.status}`);
 });
 
-// 8. Attribution
+// 8. Attribution text
 L.control.attribution({ prefix: "🎮 خريطة لعبة Mission 249" }).addTo(map);
