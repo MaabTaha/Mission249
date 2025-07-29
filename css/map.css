@@ -1,18 +1,93 @@
-html, body, #map {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* General App Styles */
+.app-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Tahoma', Arial, sans-serif;
 }
 
-/* Purple-blue game-like filter */
+.profile-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Map Container */
+.map-container {
+    height: 60vh;
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Leaflet Styles */
 .leaflet-container {
-  filter: hue-rotate(230deg) saturate(0.8) brightness(0.9);
-  background: #5d3a81;
+    filter: hue-rotate(230deg) saturate(0.5) brightness(0.9);
+    background: #5d3a81;
+    font-family: 'Tahoma', Arial, sans-serif;
 }
 
-/* Arabic popup style */
 .leaflet-popup-content {
-  font-size: 14px;
-  direction: rtl;
-  text-align: right;
+    font-size: 14px;
+    text-align: right;
+    direction: rtl;
+}
+
+/* Legend Styles */
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Navigation Styles */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.bottom-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.bottom-nav a.active {
+    color: #5d3a81;
+}
+
+/* RTL Text Styles */
+[dir="rtl"] {
+    text-align: right;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 15px 0;
+    color: #5d3a81;
+}
+
+.season-intro {
+    background-color: #f0e6ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
