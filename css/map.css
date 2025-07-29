@@ -1,0 +1,18 @@
+html, body, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Purple-blue game-like filter */
+.leaflet-container {
+  filter: hue-rotate(230deg) saturate(0.8) brightness(0.9);
+  background: #5d3a81;
+}
+
+/* Arabic popup style */
+.leaflet-popup-content {
+  font-size: 14px;
+  direction: rtl;
+  text-align: right;
+}
