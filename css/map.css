@@ -4,18 +4,28 @@
     max-width: 800px;
     margin: 0 auto;
     font-family: 'Tahoma', Arial, sans-serif;
+    position: relative; /* Added to make absolute positioning of profile-icon relative to this container */
 }
 
+/* --- Profile Icon Styles --- */
 .profile-icon {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 20px; /* Adjust as needed */
+    /* Removed 'left: 20px;' from here */
+    z-index: 1000; /* Ensures the icon stays on top of other elements */
 }
 
 .profile-icon img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Optional: add a subtle shadow */
+}
+
+/* New class for positioning the profile icon on the right */
+.right-profile {
+    right: 20px; /* Positions it 20px from the right edge of the app-container */
+    left: auto; /* Ensures no conflict with a default 'left' value */
 }
 
 /* Map Container */
