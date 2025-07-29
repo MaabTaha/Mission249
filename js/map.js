@@ -1,66 +1,68 @@
-// 1. Create map and set view over Sudan
-const map = L.map('map', {
-  minZoom: 5,
-  maxZoom: 18, // allow deep zoom
-  zoomSnap: 0.5,
-  maxBounds: [
-    [8.5, 20.5],  // Southwest
-    [23.5, 38.5]  // Northeast
-  ]
-}).setView([17.6, 33.9], 6);
+// Initialize the map
+function initMap() {
+    const map = L.map('map', {
+        minZoom: 5,
+        maxZoom: 18,
+        zoomSnap: 0.5,
+        maxBounds: [
+            [8.5, 20.5],  // Southwest
+            [23.5, 38.5]  // Northeast
+        ]
+    }).setView([17.6, 33.9], 6);
 
-// 2. Load OpenStreetMap tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: ''
-}).addTo(map);
+    // Load OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-// 3. Define custom icons for missions and teams
-const missionIcon = L.icon({
-  iconUrl: 'https://cdn-icons-png.flaticon.com/512/1055/1055646.png',
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -28]
-});
+    // Define custom icons
+    const missionIcon = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/1055/1055646.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -28]
+    });
 
-const teamIcon = L.icon({
-  iconUrl: 'https://i.postimg.cc/gcRvmJZC/clipart1407097.png',
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -28]
-});
+    const teamIcon = L.icon({
+        iconUrl: 'https://i.postimg.cc/gcRvmJZC/clipart1407097.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -28]
+    });
 
-// 4. Define missions (completed)
-const missions = [
-  { name: "المهمة الأولى: تنظيف ساحة المدرسة", lat: 15.6, lng: 32.5, status: "✅ تمت المهمة بنجاح" },
-  { name: "المهمة الثانية: طلاء جدران الفصل", lat: 17.0, lng: 33.8, status: "✅ تمت المهمة بنجاح" },
-  { name: "المهمة الثالثة: صيانة النوافذ", lat: 17.0, lng: 31.8, status: "✅ تمت المهمة بنجاح" },
-  { name: "المهمة الرابعة: تركيب مروحة السقف", lat: 18.0, lng: 25.8, status: "✅ تمت المهمة بنجاح" },
-  { name: "المهمة الخامسة: تنظيف المكتبة", lat: 19.0, lng: 33.8, status: "✅ تمت المهمة بنجاح" },
-  { name: "المهمة السادسة: إصلاح مقاعد الطلاب", lat: 12.0, lng: 29.8, status: "✅ تمت المهمة بنجاح" }
-];
+    // Mission data
+    const missions = [
+        { name: "المهمة 1: تنظيف ساحة المدرسة", lat: 15.6, lng: 32.5, status: "✅ تم إكمال المهمة" },
+        { name: "المهمة 2: طلاء الفصول", lat: 17.0, lng: 33.8, status: "✅ تم إكمال المهمة" },
+        { name: "المهمة 3: صيانة النوافذ", lat: 17.0, lng: 31.8, status: "✅ تم إكمال المهمة" },
+        { name: "المهمة 4: تركيب مراوح السقف", lat: 18.0, lng: 25.8, status: "✅ تم إكمال المهمة" },
+        { name: "المهمة 5: تنظيف المكتبة", lat: 19.0, lng: 33.8, status: "✅ تم إكمال المهمة" },
+        { name: "المهمة 6: إصلاح مقاعد الطلاب", lat: 12.0, lng: 29.8, status: "✅ تم إكمال المهمة" }
+    ];
 
-// 5. Define teams looking for members
-const teams = [
-  { name: "🐢 سلاحف النينجا — الفريق جاهز وينتظرك!", lat: 15.6, lng: 32.6, status: "ابحث عن فريق 🤝" },
-  { name: "💪 فتيات القوة — نحتاج بطلة تنضم لينا", lat: 15.7, lng: 32.55, status: "ابحث عن فريق 🤝" },
-  { name: "🐧 بطاريق مدغشقر — انضم لأذكى خطة", lat: 14.8, lng: 33.4, status: "ابحث عن فريق 🤝" },
-  { name: "🦁 فرقة زو — مغامرة تبدأ من هنا", lat: 13.9, lng: 32.3, status: "ابحث عن فريق 🤝" },
-  { name: "🦸‍♂️ فرقة الأبطال — في انتظار بطل جديد", lat: 19.1, lng: 30.5, status: "ابحث عن فريق 🤝" }
-];
+    // Team data
+    const teams = [
+        { name: "🐢 سلاحف النينجا - جاهزون لانضمامك!", lat: 15.6, lng: 32.6, status: "يبحث عن أعضاء 🤝" },
+        { name: "💪 فتيات القوة - انضمي إلينا", lat: 15.7, lng: 32.55, status: "يبحث عن أعضاء 🤝" },
+        { name: "🐧 بطاريق مدغشقر - خطط ذكية", lat: 14.8, lng: 33.4, status: "يبحث عن أعضاء 🤝" },
+        { name: "🦁 فرقة زو - المغامرة تبدأ هنا", lat: 13.9, lng: 32.3, status: "يبحث عن أعضاء 🤝" },
+        { name: "🦸‍♂️ فرقة الأبطال - في انتظارك", lat: 19.1, lng: 30.5, status: "يبحث عن أعضاء 🤝" }
+    ];
 
-// 6. Add all missions to the map
-missions.forEach(m => {
-  L.marker([m.lat, m.lng], { icon: missionIcon })
-    .addTo(map)
-    .bindPopup(`<b>${m.name}</b><br>${m.status}`);
-});
+    // Add missions to map
+    missions.forEach(m => {
+        L.marker([m.lat, m.lng], { icon: missionIcon })
+            .addTo(map)
+            .bindPopup(`<b>${m.name}</b><br>${m.status}`);
+    });
 
-// 7. Add all teams to the map
-teams.forEach(t => {
-  L.marker([t.lat, t.lng], { icon: teamIcon })
-    .addTo(map)
-    .bindPopup(`<b>${t.name}</b><br>${t.status}`);
-});
+    // Add teams to map
+    teams.forEach(t => {
+        L.marker([t.lat, t.lng], { icon: teamIcon })
+            .addTo(map)
+            .bindPopup(`<b>${t.name}</b><br>${t.status}`);
+    });
+}
 
-// 8. Attribution text
-L.control.attribution({ prefix: "🎮 خريطة لعبة Mission 249" }).addTo(map);
+// Initialize the map when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initMap);
