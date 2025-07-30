@@ -1,0 +1,38 @@
+.mission-row {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+.mission-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.mission-info p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.details-link {
+  background-color: #2196f3;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.details-link:hover {
+  background-color: #1976d2;
+}

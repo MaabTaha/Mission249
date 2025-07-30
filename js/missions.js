@@ -1,40 +1,38 @@
 const missions = [
   {
     id: "paint-classroom",
-    name: "Paint Classroom",
+    name: "طلاء الفصول الدراسية",
     points: 25
   },
   {
     id: "add-school",
-    name: "Add School to Google Maps",
+    name: "إضافة المدرسة إلى خرائط قوقل",
     points: 10
   },
   {
     id: "clean-classrooms",
-    name: "Clean Classrooms & Yards",
+    name: "تنظيف الفصول والساحات",
     points: 25
   },
   {
     id: "donate-supplies",
-    name: "Donate School Supplies",
+    name: "التبرع بالأدوات المدرسية",
     points: 15
   },
   {
     id: "support-meals",
-    name: "Support School Meals",
+    name: "دعم وجبات الطلاب",
     points: 20
   },
   {
     id: "decorate-school",
-    name: "Decorate School",
+    name: "تزيين المدرسة",
     points: 15
   }
 ];
 
-// Reference to the container
 const container = document.getElementById('missionsList');
 
-// Generate HTML for each mission
 missions.forEach(mission => {
   const row = document.createElement('div');
   row.className = 'mission-row';
@@ -42,10 +40,10 @@ missions.forEach(mission => {
   row.innerHTML = `
     <div class="mission-info">
       <h4>${mission.name}</h4>
-      <p>🪙 ${mission.points} points</p>
+      <p>🪙 ${mission.points} نقطة</p>
     </div>
-    <a href="mission-detail.html?id=${mission.id}">
-      <button type="button" class="details-btn">View Details</button>
+    <a href="mission-detail.html?id=${mission.id}" class="details-link">
+      عرض التفاصيل
     </a>
   `;
 
