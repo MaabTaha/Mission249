@@ -1,96 +1,66 @@
-// Initialize Supabase
-const supabaseUrl = 'https://jlvvaebqwerlozlrnfqn.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsdnZhZWJxd2VybG96bHJuZnFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM4MzA2MTUsImV4cCI6MjA2OTQwNjYxNX0.W3T5DR3EBKFHQmCq1y1vjCauK_jqnjlimkQuHA9PVC0';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-// Get DOM elements
+// Get elements
 const form = document.getElementById('signupForm');
 const loginBtn = document.getElementById('loginBtn');
 const message = document.getElementById('message');
 const usernameInput = document.getElementById('usernameInput');
 
-// Message display function
+// Fake "database" using localStorage
+function getUsers() {
+  return JSON.parse(localStorage.getItem('users')) || [];
+}
+
+function saveUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
 function showMessage(text, isError = true) {
   message.textContent = text;
   message.style.color = isError ? 'red' : 'green';
 }
 
-// Sign Up handler
-form.addEventListener('submit', async (e) => {
+// Sign Up logic (form submit)
+form.addEventListener('submit', function (e) {
   e.preventDefault();
   const username = usernameInput.value.trim();
-  if (!username) return showMessage('يرجى إدخال اسم المستخدم.');
+  let users = getUsers();
 
-  const fakeEmail = `${username.toLowerCase()}@mission249.com`;
-  const fakePassword = `${username}_249`;
+  if (!username) {
+    showMessage('يرجى إدخال اسم المستخدم.');
+    return;
+  }
 
-  try {
-    // 1. Create auth user
-    const { data, error: authError } = await supabase.auth.signUp({
-      email: fakeEmail,
-      password: fakePassword,
-      options: { data: { username } }
-    });
-
-    if (authError) throw authError;
-
-    // 2. Insert into public users table
-    const { error: dbError } = await supabase
-      .from('users')
-      .insert([{
-        id: data.user.id,
-        username: username,
-        score: 0,
-        started_missions: []
-      }]);
-
-    if (dbError) throw dbError;
-
-    // 3. Store locally and redirect
+  const userExists = users.some(u => u.username === username);
+  if (userExists) {
+    showMessage('هذا الاسم محجوز . يرجى اختيار اسم آخر.', true);
+  } else {
+    users.push({ username, points: 0, startedMissions: []  });
+    saveUsers(users);
     localStorage.setItem('currentUser', username);
-    showMessage('تم إنشاء الحساب بنجاح!', false);
-    setTimeout(() => window.location.href = 'home.html', 1500);
-    
-  } catch (err) {
-    console.error("Signup error:", err);
-    
-    // Handle specific errors
-    if (err.message.includes("already registered")) {
-      showMessage('هذا الاسم مستخدم بالفعل. جرب اسمًا آخر.');
-    } else if (err.message.includes("permission denied")) {
-      showMessage('خطأ في الصلاحيات. يرجى مراجعة إعدادات الحماية.');
-    } else {
-      showMessage('حدث خطأ أثناء التسجيل: ' + err.message);
-    }
+    showMessage('تم إنشاء الحساب! جاري التحويل...', false);
+    setTimeout(() => {
+      window.location.href = 'home.html';
+    }, 1000);
   }
 });
 
-// Log In handler
-loginBtn.addEventListener('click', async () => {
+// Log In logic (button click)
+loginBtn.addEventListener('click', function () {
   const username = usernameInput.value.trim();
-  if (!username) return showMessage('يرجى إدخال اسم المستخدم.');
+  const users = getUsers();
+  const user = users.find(u => u.username === username);
 
-  const fakeEmail = `${username.toLowerCase()}@mission249.com`;
-  const fakePassword = `${username}_249`;
+  if (!username) {
+    showMessage('يرجى كتابة اسم المستخدم.');
+    return;
+  }
 
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: fakeEmail,
-      password: fakePassword
-    });
-
-    if (error) throw error;
-
+  if (user) {
     localStorage.setItem('currentUser', username);
     showMessage('تم تسجيل الدخول بنجاح! جاري التحويل...', false);
-    setTimeout(() => window.location.href = 'home.html', 1000);
-  } catch (err) {
-    console.error("Login error:", err);
-    
-    if (err.message.includes("Invalid login credentials")) {
-      showMessage('بيانات الدخول غير صحيحة. تأكد من اسم المستخدم.');
-    } else {
-      showMessage('حدث خطأ أثناء تسجيل الدخول: ' + err.message);
-    }
+    setTimeout(() => {
+      window.location.href = 'home.html';
+    }, 1000);
+  } else {
+    showMessage('لم يتم العثور على اسم المستخدم. تأكد من كتابته بشكل صحيح أو قم بإنشاء حساب جديد.');
   }
 });
