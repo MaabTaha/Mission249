@@ -15,7 +15,44 @@ body {
   background-color: #111;
   min-height: 100vh;
   /* padding: 2rem 0; */
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
 }
+
+
+h1, h2, h3, h4, h5 {
+  color: #222;
+  margin: 1rem 1.2rem 0.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.app-content {
+  padding: 1.5rem;
+  margin-top: 3rem; /* account for profile icon */
+}
+
+.details-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+  background-color: #3da043;
+}
+
 
 .app-container {
   max-width: 420px;
@@ -32,6 +69,18 @@ body {
   box-shadow: 0 0 15px rgba(0,0,0,0.3); /* phone-like card look */
   border-radius: 12px;
 }
+
+
+
+.missions-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.missions-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
 
 
 .profile-icon {
@@ -59,11 +108,16 @@ body {
 
 
 .season-intro {
-  background-color: #42b6c8;
+  background-color: rgba(255, 255, 255, 0.4);
   padding: 1.5rem;
   border-radius: 10px;
   margin-bottom: 2rem;
 }
+
+.season-intro h1 {
+  margin-right: 0.5rem;
+}
+
 
 .season-intro h4 {
   margin-bottom: 0.5rem;
@@ -90,12 +144,14 @@ body {
 .mission-card {
   flex: 0 0 auto;
   min-width: 220px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.4);
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   scroll-snap-align: start;
   text-align: left;
+  direction: rtl; 
+  text-align: right; 
 }
 
 .mission-card h5 {
@@ -109,7 +165,7 @@ body {
 
 .mission-card button {
   padding: 0.5rem 1rem;
-  background-color: #4caf50;
+  background-color: #954bcd;
   color: white;
   border: none;
   border-radius: 6px;
@@ -130,14 +186,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 0 1.5rem;
 }
 
 .started-mission {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f9f9f9;
+  background: rgba(255, 255, 255, 0.6);
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
@@ -163,6 +219,17 @@ body {
   background-color: #1976d2;
 }
 
+.no-missions {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #333;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 1rem;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
 
 
 
@@ -172,6 +239,8 @@ body {
   padding: 1.5rem;
   border-radius: 10px;
   text-align: left;
+  direction: rtl; 
+  text-align: right; 
 }
 
 .leaderboard-spotlight h4 {
@@ -192,20 +261,35 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   padding: 0.75rem 1rem;
   border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  min-width: 0; /* prevents overflow issues */
 }
 
+
 .pfp {
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 0.75rem;
+  margin-left: 0.75rem;
 }
+
+.card-info {
+  flex: 1;
+  white-space: nowrap;      
+  overflow: hidden;         
+  text-overflow: ellipsis;  
+  max-width: 100px; 
+}
+
 
 .card-info strong {
   display: block;
   font-size: 1rem;
-  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: #222;
+  line-height: 1.4;
 }
 
 .card-info p {
@@ -215,5 +299,13 @@ body {
 }
 
 
+/* Responsive tweaks (optional) */
+@media (max-width: 420px) {
+  .mission-card {
+    min-width: 200px;
+  }
 
-
+  .leaderboard-grid {
+    gap: 0.75rem 1rem;
+  }
+}

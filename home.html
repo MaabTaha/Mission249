@@ -1,152 +1,126 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mission 249 - Home</title>
-        <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="css/template.css">
-    </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission 249 - Home</title>
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/template.css" />
+</head>
 
-    <body>
-        <div class="app-container">
-          <a href="dashboard.html" class="profile-icon">
-              <img src="assets/images/ProfileIcon.png" alt="profile icon">
-          </a>
+<body>
+  <div class="app-container">
+    <a href="dashboard.html" class="profile-icon">
+      <img src="assets/images/ProfileIcon.png" alt="profile icon" />
+    </a>
 
+    <div class="app-content">
+      <section class="season-intro">
+        <h1>الموسم الأول : إعادة بناء الأمل</h1>
+        <p>
+          نؤمن بأن بناء الحضارات يبدأ من غرس حب التعلم في قلوب الأطفال، وأن التعليم هو سلاحنا الأقوى لتغيير العالم.
+          رغم ندوب الحرب التي طالت مدارسنا، حان وقت إعادة إحياء هذه الصروح لتصبح بيئة يولد فيها الأمل من جديد،
+          وتمنح أطفالنا فرصة بناء مستقبلهم المشرق. مهمتكم اليوم هي بث الروح في هذه المدارس،
+          وتهيئتها لاستقبال أبطال المستقبل. كل يد تساعد هي حجر أساس في بناء أعظم المجتمعات، فهل أنتم مستعدون لتكونوا جزءًا من هذا التغيير العظيم؟
+        </p>
+      </section>
 
-          <h1>Season 1: Revive 249 Schools</h1>
-          <section class="season-intro">
-              <h4>Season 1: Back to School Readiness</h4>
-              <p>
-              This season, we're coming together to make schools more welcoming, functional, and fun.
-              Help create spaces where students feel proud and excited to learn, every small action counts
-              </p>
-          </section>
+      <p id="missionSummary"></p>
 
+      <h3>أبرز المهام</h3>
+      <div class="missions-scroll">
 
-          <p id="missionSummary"></p>
+        <div class="mission-card">
+          <h5>طلاء الفصول الدراسية</h5>
+          <p>🪙 ٢٥ نقطة</p>
+          <a href="mission-detail.html?id=paint-classroom" class="details-btn">عرض التفاصيل</a>
+        </div>
 
+        <div class="mission-card">
+          <h5>أضف مدرسة إلى خرائط قوقل</h5>
+          <p>🪙 ١٠ نقاط</p>
+          <a href="mission-detail.html?id=add-school" class="details-btn">عرض التفاصيل</a>
+        </div>
 
-          <h3>Featured Missions</h3>
-          <div class="missions-scroll">
+        <div class="mission-card">
+          <h5>تنظيف الفصول والساحات</h5>
+          <p>🪙 ١٥ نقطة</p>
+          <a href="mission-detail.html?id=clean-classrooms" class="details-btn">عرض التفاصيل</a>
+        </div>
 
-              <div class="mission-card">
-                <h5>Paint Classroom</h5>
-                <p>🪙 25 points</p>
-                <a href="mission-detail.html?id=paint-classroom">
-                  <button type="button" class="details-btn">View Details</button>
-                </a>
-              </div>
+        <div class="mission-card">
+          <h5>التبرع بأدوات مدرسية</h5>
+          <p>🪙 ٢٥ نقطة</p>
+          <a href="mission-detail.html?id=donate-supplies" class="details-btn">عرض التفاصيل</a>
+        </div>
 
+        <div class="mission-card">
+          <h5>دعم وجبات الطلاب</h5>
+          <p>🪙 ٢٠ نقطة</p>
+          <a href="mission-detail.html?id=support-meals" class="details-btn">عرض التفاصيل</a>
+        </div>
 
+        <div class="mission-card">
+          <h5>تزيين مدرسة</h5>
+          <p>🪙 ١٥ نقطة</p>
+          <a href="mission-detail.html?id=decorate-school" class="details-btn">عرض التفاصيل</a>
+        </div>
+      </div>
 
+      <br />
 
-              <div class="mission-card">
-                <h5>Add School to Google Maps</h5>
-                <p>🪙 10 points</p>
-                <a href="mission-detail.html?id=add-school">
-                  <button type="button" class="details-btn">View Details</button>
-                </a>            
-              </div>
+      <h3>المهام التي بدأتها</h3>
+      <div class="started-missions"></div>
+      <div id="startedMissionsContainer"></div>
 
-              <div class="mission-card">
-                  <h5>Clean Classrooms & Yards</h5>
-                  <p>🪙 25 points</p>
-                <a href="mission-detail.html?id=clean-classrooms">
-                  <button type="button" class="details-btn">View Details</button>
-                </a>
+      <section class="leaderboard-spotlight">
+        <h3>المتميزين</h3>
 
-              </div>
-            
-              <div class="mission-card">
-                <h5>Donate School Supplies</h5>
-                <p>🪙 15 points</p>
-                <a href="mission-detail.html?id=donate-supplies">
-                  <button type="button" class="details-btn">View Details</button>
-                </a>            
-              </div>
-
-              <div class="mission-card">
-                <h5>Support School Meals</h5>
-                <p>🪙 20 points</p>
-                <a href="mission-detail.html?id=support-meals">
-                  <button type="button" class="details-btn">View Details</button>
-                </a>
-              </div>
-
-              <div class="mission-card">
-                <h5>Decorate School</h5>
-                <p>🪙 15 points</p>
-                <a href="mission-detail.html?id=decorate-school">
-                  <button type="button" class="details-btn">View Details</button>
-                </a>
-              </div>
+        <div class="leaderboard-grid">
+          <div class="leaderboard-card">
+            <img src="assets/images/ProfileIcon.png" alt="Agent" class="pfp" />
+            <div class="card-info">
+              <strong>عائشة أحمد</strong>
+              <p>67 نقطة</p>
+            </div>
           </div>
 
+          <div class="leaderboard-card">
+            <img src="assets/images/ProfileIcon.png" alt="Agent" class="pfp" />
+            <div class="card-info">
+              <strong>علي موسى</strong>
+              <p>61 نقطة</p>
+            </div>
+          </div>
 
+          <div class="leaderboard-card">
+            <img src="assets/images/ProfileIcon.png" alt="Agent" class="pfp" />
+            <div class="card-info">
+              <strong>سارة إدريس</strong>
+              <p>55 نقطة</p>
+            </div>
+          </div>
 
-
-          <h3>Started Missions</h3>
-          <div class="started-missions"></div>
-          <div id="startedMissionsContainer"></div>
-
-
-
-
-
-          <section class="leaderboard-spotlight">
-            <h3>Leaderboard Spotlight</h3>
-          
-            <div class="leaderboard-grid">
-            
-              <div class="leaderboard-card">
-                <img src="pfp1.png" alt="Agent" class="pfp">
-                <div class="card-info">
-                  <strong>Aisha Ahmed</strong>
-                  <p>25 points</p>
-                </div>
-              </div>
-            
-              <div class="leaderboard-card">
-                <img src="pfp2.png" alt="Agent" class="pfp">
-                <div class="card-info">
-                  <strong>Ali Musa</strong>
-                  <p>22 points</p>
-                </div>
-              </div>
-            
-              <div class="leaderboard-card">
-                <img src="pfp3.png" alt="Agent" class="pfp">
-                <div class="card-info">
-                  <strong>Sarah Idris</strong>
-                  <p>21 points</p>
-                </div>
-              </div>
-            
-              <div class="leaderboard-card">
-                <img src="pfp4.png" alt="Agent" class="pfp">
-                <div class="card-info">
-                  <strong>Khalid Osman</strong>
-                  <p>20 points</p>
-                </div>
-              </div>
-            
-            </div> <!-- End of .leaderboard-grid -->
-          </section>
-
-
-          <nav class="bottom-nav">
-              <a href="home.html" class="nav-item active">الرئيسية</a>
-              <a href="leaderboard.html" class="nav-item">لوحة الصدارة</a>
-              <a href="missions.html" class="nav-item">المهام</a>
-              <a href="map.html" class="nav-item">الخريطة</a>
-              <a href="dashboard.html" class="nav-item">ملفي الشخصي</a>
-          </nav>
-
-          
-          
+          <div class="leaderboard-card">
+            <img src="assets/images/ProfileIcon.png" alt="Agent" class="pfp" />
+            <div class="card-info">
+              <strong>خالد عثمان</strong>
+              <p>49 نقطة</p>
+            </div>
+          </div>
         </div>
-        <script src="js/home.js" defer></script>
-    </body>
+      </section>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="home.html" class="nav-item active">الرئيسية</a>
+      <a href="leaderboard.html" class="nav-item">لوحة الصدارة</a>
+      <a href="missions.html" class="nav-item">المهام</a>
+      <a href="map.html" class="nav-item">الخريطة</a>
+      <a href="dashboard.html" class="nav-item">ملفي الشخصي</a>
+    </nav>
+  </div>
+
+  <script src="js/home.js" defer></script>
+</body>
 </html>
