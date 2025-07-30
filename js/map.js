@@ -58,6 +58,7 @@ function initMap() {
     { name: "🦸‍♂️ فرقة الأبطال - في انتظارك", lat: 19.1, lng: 30.5, status: "يبحث عن أعضاء 🤝" }
   ];
 
+  
   missions.forEach(m => {
     L.marker([m.lat, m.lng], {
       icon: createPulsingIcon('https://cdn-icons-png.flaticon.com/512/1055/1055646.png')
@@ -73,6 +74,6 @@ function initMap() {
       .addTo(map)
       .bindPopup(`<b>${t.name}</b><br>${t.status}`);
   });
-  
+
 }
 
