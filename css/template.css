@@ -21,6 +21,7 @@ body {
 
 .app-container {
   max-width: 420px;
+  padding-bottom: 70px; /* slightly more than .bottom-nav height */
   height: 100dvh; /* use fixed height instead of min-height */
   width: 100%;
   position: relative;

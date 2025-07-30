@@ -48,7 +48,7 @@ if (mission) {
       <p>إن أُنجزت المهمة في مجموعة او فريق: +١٠ نقاط إضافية</p>
 
       <div class="button-group">
-        <button id="viewGroupsBtn" class="secondary-btn"> عرض الفرق القريبة منك</button>
+        <button id="viewGroupsBtn" class="secondary-btn"> عرض الفرق المتواجدة بالقرب منك</button>
         <button id="createGroupBtn">أنشئ فريق</button>
         <button id="startBtn">بدء المهمة</button>
         <button id="completeBtn">تم إنجاز المهمة</button>

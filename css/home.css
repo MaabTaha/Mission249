@@ -8,6 +8,7 @@ html, body {
   height: 100%;
   overflow-y: auto;
 }
+
 body {
   display: flex;
   justify-content: center;
@@ -19,7 +20,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
 }
-
 
 h1, h2, h3, h4, h5 {
   color: #222;
