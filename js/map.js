@@ -74,3 +74,4 @@ function initMap() {
       .bindPopup(`<b>${t.name}</b><br>${t.status}`);
   });
 }
+
