@@ -73,5 +73,6 @@ function initMap() {
       .addTo(map)
       .bindPopup(`<b>${t.name}</b><br>${t.status}`);
   });
+  
 }
 
