@@ -1,6 +1,7 @@
 const currentUsername = localStorage.getItem('currentUser');
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
+// Check if user is logged in
 if (!currentUsername) {
   window.location.href = 'index.html';
 } else {
