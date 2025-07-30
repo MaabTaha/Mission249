@@ -25,18 +25,18 @@ form.addEventListener('submit', function (e) {
   let users = getUsers();
 
   if (!username) {
-    showMessage('Please enter a username.');
+    showMessage('يرجى إدخال اسم المستخدم.');
     return;
   }
 
   const userExists = users.some(u => u.username === username);
   if (userExists) {
-    showMessage('Username already taken.');
+    showMessage('هذا الاسم محجوز . يرجى اختيار اسم آخر.', true);
   } else {
     users.push({ username, points: 0, startedMissions: []  });
     saveUsers(users);
     localStorage.setItem('currentUser', username);
-    showMessage('Account created! Redirecting...', false);
+    showMessage('تم إنشاء الحساب! جاري التحويل...', false);
     setTimeout(() => {
       window.location.href = 'home.html';
     }, 1000);
@@ -50,17 +50,17 @@ loginBtn.addEventListener('click', function () {
   const user = users.find(u => u.username === username);
 
   if (!username) {
-    showMessage('Please enter your username.');
+    showMessage('يرجى كتابة اسم المستخدم.');
     return;
   }
 
   if (user) {
     localStorage.setItem('currentUser', username);
-    showMessage('Login successful! Redirecting...', false);
+    showMessage('تم تسجيل الدخول بنجاح! جاري التحويل...', false);
     setTimeout(() => {
       window.location.href = 'home.html';
     }, 1000);
   } else {
-    showMessage('Username not found. Try signing up first or checking your spelling.');
+    showMessage('لم يتم العثور على اسم المستخدم. تأكد من كتابته بشكل صحيح أو قم بإنشاء حساب جديد.');
   }
 });
