@@ -12,8 +12,6 @@
   overflow-x: hidden;
 }
 
-
-
 .app-content {
   width: 100%;
   max-height: calc(100dvh - 100px); /* adjust for logo/header/footer */
@@ -23,9 +21,9 @@
 
 /* Logo */
 .logo {
-  width: 200px;
+  width: 160px;
   max-width: 80%;
-  margin: 2rem auto 1rem;
+  margin: 0rem auto 1rem;
   display: block;
 }
 
@@ -36,14 +34,15 @@
   margin-bottom: 1.5rem;
 }
 
+
 /* Form container */
-.form-container {
+/* .form-container {
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #ffffffe6;
   padding: 2rem 1.2rem;
   border-radius: 12px;
   text-align: center;
-}
+} */
 
 input[type="text"] {
   width: 100%;
@@ -51,11 +50,12 @@ input[type="text"] {
   margin-bottom: 1.5rem;
   border-radius: 50px;
   border: none;
-  background-color: #B1CFCE;
+  background-color: rgba(255, 255, 255, 0.4);
   font-size: 1rem;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 
 /* Buttons */
@@ -64,6 +64,7 @@ input[type="text"] {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  /* opacity: ; */
 }
 
 .button-group button {
@@ -71,7 +72,7 @@ input[type="text"] {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.6);
+  /* background-color: rgba(255, 255, 255, 0.4); */
   color: #000;
   font-size: 1rem;
   font-weight: bold;
@@ -86,17 +87,17 @@ input[type="text"] {
 
 
 #signUpBtn {
-  background-color: #4caf50;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgb(0, 0, 0);
 }
 
 #signUpBtn:hover {
-  background-color: #45a049;
+  background-color: #2196f3;
 }
 
 #loginBtn {
-  background-color: #2196f3;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgb(0, 0, 0);
 }
 
 #loginBtn:hover {
