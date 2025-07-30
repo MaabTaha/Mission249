@@ -1,138 +1,132 @@
 const missions = {
   "paint-classroom": {
-    name: "Paint Classroom",
+    name: "طلاء الفصول الدراسية",
     points: 25,
-    description: "Repaint classroom walls or add creative murals to make the learning environment more fun and welcoming."
+    description: "قم بطلاء الجدران المتقشرة والأبواب والنوافذ، أو  ارسم جداريات تحفيزية وتعليمية للأطفال (كالحروف، الأرقام، والقيم). يمكنك أيضاً طلاء الأثاث مثل الطاولات والكراسي لإضفاء لمسة جديدة."
   },
   "add-school": {
-    name: "Add School to Google Maps",
+    name: "إضافة مدرسة إلى خرائط قوقل",
     points: 10,
-    description: "Help others find a school by uploading its name, location, and photos to Google Maps."
+    description: "وثّق المدرسة على خرائط قوقل برفع اسمها وموقعها، وإضافة صور واضحة للمدخل والفصول الساحة. قم بتضمين معلومات عامة عنها مثل نوعها (أساسي/ثانوي، خاص/حكومي، دولي) ومنهجها (سوداني، IG بريطاني، إلخ) إن توفرت. أي معلومة يمكنك إضافتها تُعد إنجازًا وتساهم في إكمال المهمة."
   },
   "clean-classrooms": {
-    name: "Clean Classrooms & Yards",
+    name: "تنظيف الفصول والساحات",
     points: 25,
-    description: "Sweep floors, wash windows and boards, and tidy up indoor and outdoor spaces."
+    description: "اكنس الأرضيات، نظّف النوافذ والسبورات، او رتب المساحات الداخلية والخارجية للمدرسة. إذا كان هناك حديقة، يمكنك إزالة الأعشاب الضارة وتنظيفها."
   },
   "donate-supplies": {
-    name: "Donate School Supplies",
+    name: "التبرع بالأدوات المدرسية",
     points: 15,
-    description: "Collect or contribute notebooks, pens, backpacks, or notebooks to support students in need."
+    description: "اجمع وتبرع باللوازم الأساسية مثل الدفاتر والأقلام والشنط المدرسية. يمكنك أيضاً تعبئة اللوازم في حقائب فردية أو التبرع بالزي المدرسي والكتب المستعملة لتوزيعها على الطلاب المحتاجين."
   },
   "support-meals": {
-    name: "Support School Meals",
+    name: "دعم وجبات الطلاب",
     points: 20,
-    description: "Prepare a lunchbox, donate food or assist in providing meals and snacks for students at school."
+    description: "ساهم في توفير وجبات غذائية للطلاب من خلال تحضّير وجبات مغذية، التبرعات لشراء المواد الغذائية اللازمة لإعداد الوجبات، او توفير وجبات خفيفة للطلاب "
   },
   "decorate-school": {
-    name: "Decorate School",
+    name: "تزيين المدرسة",
     points: 15,
-    description: "Design colorful posters, paint murals, or plant flowers to make the school beautiful."
+    description: "أضف لمسة من البهجة والإلهام! صمم ملصقات ملونة، ارسم على الجدران، أو قم بتلوين الأبواب والنوافذ بلون موحد. ازرع الزهور أو أضف نباتات لتجميل المساحات الخارجية والداخلية للمدرسة."
   }
 };
 
-// Get URL param
 const params = new URLSearchParams(window.location.search);
 const missionId = params.get("id");
 
 const container = document.getElementById("mission-details");
 const mission = missions[missionId];
 
-// Dummy placeholder for groups (can be expanded later)
-const dummyGroups = [
-  { name: "Team Unity", members: 17 },
-  { name: "Brush Bros", members: 8 }
-];
-
 if (mission) {
   container.innerHTML = `
-    <h2>${mission.name}</h2>
-    <p>🪙 ${mission.points} points</p>
-    <p>${mission.description}</p>
+    <section class="mission-detail-card">
+      <h2>${mission.name}</h2>
+      <p class="points">🪙 ${mission.points} نقطة</p>
+      <p class="description">${mission.description}</p>
 
-    <h3>Team Bonus</h3>
-    <p>If completed in a group: +10 bonus points</p>
+      <h3>مكافأة العمل الجماعي</h3>
+      <p>إن أُنجزت المهمة في مجموعة او فريق: +١٠ نقاط إضافية</p>
 
-    
-    <button id="createGroupBtn">Create Group</button>
-    <button id="startBtn">Start Mission</button>
-    <button id="completeBtn">Mark as Complete</button>
+      <div class="button-group">
+        <button id="viewGroupsBtn" class="secondary-btn"> عرض الفرق القريبة منك</button>
+        <button id="createGroupBtn">أنشئ فريق</button>
+        <button id="startBtn">بدء المهمة</button>
+        <button id="completeBtn">تم إنجاز المهمة</button>
+      </div>
+    </section>
   `;
 
-  // Event: Create Group
-  document.getElementById('createGroupBtn').addEventListener('click', () => {
-    const name = document.getElementById('groupNameInput').value.trim();
-    if (!name) return alert("Enter a group name!");
-    const list = document.getElementById('groupList');
-    const newItem = document.createElement('li');
-    newItem.textContent = `${name} (1 member)`;
-    list.appendChild(newItem);
-    document.getElementById('groupNameInput').value = '';
+
+  // Event: View Groups
+  document.getElementById('viewGroupsBtn').addEventListener('click', () => {
+    window.location.href = `nearby-groups.html`;
   });
 
-  // ✅ Event: Start Mission
+  
+  // Event: Start Mission
   document.getElementById('startBtn').addEventListener('click', () => {
     const username = localStorage.getItem("currentUser");
     if (!username) {
-      alert("You're not logged in.");
+      alert("يرجى تسجيل الدخول أولاً.");
       return;
     }
 
-const users = JSON.parse(localStorage.getItem("users")) || [];
-const currentUser = users.find(u => u.username === username);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const currentUser = users.find(u => u.username === username);
 
-if (!currentUser) {
-  alert("User not found.");
-  return;
-}
+    if (!currentUser) {
+      alert("لم يتم العثور على المستخدم.");
+      return;
+    }
 
-if (!currentUser.startedMissions.includes(missionId)) {
-  currentUser.startedMissions.push(missionId);
-  localStorage.setItem("users", JSON.stringify(users));
-  alert("Mission started! You’ll see it on your home page.");
-  window.location.href = "home.html"; 
-} else {
-  alert("You’ve already started this mission.");
-}
-
+    if (!currentUser.startedMissions.includes(missionId)) {
+      currentUser.startedMissions.push(missionId);
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("تم بدء المهمة! ستظهر لك في الصفحة الرئيسية.");
+      window.location.href = "home.html";
+    } else {
+      alert("لقد بدأت هذه المهمة مسبقًا.");
+    }
   });
 
   // Event: Complete Mission
-document.getElementById('completeBtn').addEventListener('click', () => {
-  const username = localStorage.getItem("currentUser");
-  if (!username) {
-    alert("You're not logged in.");
-    return;
-  }
+  document.getElementById('completeBtn').addEventListener('click', () => {
+    const username = localStorage.getItem("currentUser");
+    if (!username) {
+      alert("يرجى تسجيل الدخول أولاً.");
+      return;
+    }
 
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  const userIndex = users.findIndex(u => u.username === username);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const userIndex = users.findIndex(u => u.username === username);
 
-  if (userIndex === -1) {
-    alert("User not found.");
-    return;
-  }
+    if (userIndex === -1) {
+      alert("لم يتم العثور على المستخدم.");
+      return;
+    }
 
-  const user = users[userIndex];
-  user.points = (user.points || 0) + mission.points;
+    const user = users[userIndex];
+    user.points = (user.points || 0) + mission.points;
+    user.startedMissions = (user.startedMissions || []).filter(id => id !== missionId);
+    user.completedMissions = user.completedMissions || {};
+    user.completedMissions[missionId] = (user.completedMissions[missionId] || 0) + 1;
+    user.totalCompleted = (user.totalCompleted || 0) + 1;
 
-  // Optional: remove mission from startedMissions
-  user.startedMissions = (user.startedMissions || []).filter(id => id !== missionId);
+    users[userIndex] = user;
+    localStorage.setItem("users", JSON.stringify(users));
 
-  users[userIndex] = user;
-  localStorage.setItem("users", JSON.stringify(users));
+    alert(`🪄 تم إضافة +${mission.points} نقطة!\n\nعارفنك داير تغشنا وما عملت الميشين لكن عايزين نفرحك 😉`);
+    window.location.href = 'home.html';
+  });
 
-  // 🎉 Fun popup
-  alert(`🪄 +${mission.points} points added! \n\nWe know you probably didn’t actually complete the mission… but hey, we like making people feel good 😉`);
-
-  // Optional: redirect to home
-  window.location.href = 'home.html';
-});
-
+  // (Optional) future group logic
+  document.getElementById('createGroupBtn').addEventListener('click', () => {
+    alert("ميزة إنشاء المجموعات لم تُفعّل بعد.");
+  });
 
 } else {
   container.innerHTML = `
-    <h2>Mission Not Found</h2>
-    <p>This mission may not exist or the link is broken.</p>
+    <h2>المهمة غير موجودة</h2>
+    <p>قد تكون هذه المهمة غير متوفرة أو الرابط غير صالح.</p>
   `;
 }
