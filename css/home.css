@@ -163,7 +163,7 @@ h3 {
 .details-btn {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #4caf50;
+  background-color: #5d3a81;
   color: white;
   border: none;
   border-radius: 6px;
@@ -176,7 +176,7 @@ h3 {
 }
 
 .details-btn:hover {
-  background-color: #3da043;
+  background-color: #655576;
   transform: scale(1.08);
   animation: none;
 }
