@@ -31,7 +31,6 @@ const missions = [
   }
 ];
 
-
 const container = document.getElementById('missionsList');
 
 missions.forEach(mission => {
