@@ -47,6 +47,7 @@ function renderStartedMissions() {
     const name = missionsMap[id] || "مهمة غير معروفة";
     const div = document.createElement("div");
     div.classList.add("started-mission");
+    div.style.animation = "fadeIn 0.5s ease-out";
 
     div.innerHTML = `
       <p>${name}</p>
@@ -77,9 +78,13 @@ function handleCompleteMission(e) {
   users[userIndex] = user;
   localStorage.setItem('users', JSON.stringify(users));
 
-  alert(`🪄 تم إضافة +${pointsEarned} نقطة!\n\nعارفنك داير تغشنا وما عملت الميشين لكن عايزين نفرحك 😉`);
+  const btn = e.target;
+  btn.textContent = `+${pointsEarned} نقطة! 🎉`;
+  btn.style.backgroundColor = "#4CAF50";
 
-  renderStartedMissions(); // re-render instead of full page refresh
+  setTimeout(() => {
+    renderStartedMissions();
+  }, 1500);
 }
 
 function showErrorAndRedirect() {
@@ -87,3 +92,14 @@ function showErrorAndRedirect() {
   localStorage.removeItem('currentUser');
   window.location.href = 'index.html';
 }
+
+setInterval(() => {
+  document.querySelectorAll('.mission-card, .leaderboard-card').forEach(card => {
+    if (Math.random() > 0.8) {
+      card.style.animation = "float 3s ease-in-out";
+      setTimeout(() => {
+        card.style.animation = "";
+      }, 3000);
+    }
+  });
+}, 5000);
