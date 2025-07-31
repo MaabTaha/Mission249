@@ -5,13 +5,12 @@
   box-sizing: border-box;
 }
 
-html {
+html, body {
   height: 100%;
   overflow-x: hidden;
 }
 
 body {
-  min-height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #111;
   color: #222;
@@ -20,36 +19,50 @@ body {
   padding: 1rem;
 }
 
-/* Main container - Fixed height solution */
+/* Main container - completely revised */
 .app-container {
   width: 100%;
   max-width: 420px;
-  min-height: 90vh; /* Changed from 100vh */
-  max-height: 90vh; /* Added to prevent elongation */
+  height: calc(var(--vh, 1vh) * 100 - 2rem); /* Dynamic viewport height */
   margin: auto;
   background-image: url('../assets/images/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: local; /* Prevents weird scrolling behavior */
   position: relative;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  overflow-y: auto; /* Allows scrolling within container */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* Content wrapper - Added height control */
+/* Content wrapper - now handles scrolling */
 .app-content {
-  padding: 2rem 1.5rem;
+  padding: 4rem 1.5rem 2rem;
   text-align: center;
-  padding-top: 4rem;
-  min-height: calc(90vh - 4rem); /* Matches container height */
-  box-sizing: border-box;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Add this to prevent content overflow */
-.scroll-content {
-  overflow-y: auto;
-  height: 100%;
+/* Bottom nav positioning */
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Profile section adjustments */
+.profile-section {
+  margin-bottom: 2rem;
+}
+
+/* Add this to handle mobile viewport height */
+@media (max-height: 700px) {
+  .app-container {
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100 - 2rem);
+  }
 }
