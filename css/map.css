@@ -53,33 +53,6 @@ body {
     height: 100%;
 }
 
-/* أيقونة الملف الشخصي */
-.profile-icon {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 1000;
-    transition: transform 0.3s ease;
-}
-
-.profile-icon:hover {
-    transform: scale(1.1);
-}
-
-.profile-icon img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid #5d3a81;
-    background-color: white;
-    transition: all 0.3s ease;
-}
-
-.profile-icon:hover img {
-    border-color: #8a6dae;
-    box-shadow: 0 0 10px rgba(93, 58, 129, 0.5);
-}
-
 /* الخريطة */
 .map-container {
     height: 55vh;
@@ -171,7 +144,8 @@ h3, h4 {
     font-family: 'Handjet', 'Tahoma', Arial, sans-serif;
     color: #5d3a81;
     margin: 0.8rem 0;
-    opacity: 0;
+    /* margin: 0.8rem; */
+    /* opacity: 0; */
     transform: translateY(20px);
     transition: opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s;
 }
