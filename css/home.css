@@ -1,7 +1,14 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+@font-face {
+  font-family: 'Handjet';
+  src: url('path/to/Handjet-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
@@ -15,10 +22,33 @@ body {
   align-items: start;
   background-color: #111;
   min-height: 100vh;
-  /* padding: 2rem 0; */
   -webkit-font-smoothing: antialiased;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Handjet', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
 h1, h2, h3, h4, h5 {
@@ -31,9 +61,125 @@ h3 {
   font-weight: bold;
 }
 
+.app-container {
+  max-width: 420px;
+  padding-bottom: 70px;
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  background-image: url('../assets/images/background.jpg');
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border-radius: 12px;
+}
+
 .app-content {
   padding: 1.5rem;
-  margin-top: 3rem; /* account for profile icon */
+  margin-top: 3rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.season-intro {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.season-intro h1 {
+  margin-right: 0.5rem;
+  font-weight: 800;
+}
+
+.season-intro h4 {
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.season-intro p {
+  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.profile-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.missions-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.missions-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.missions-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.mission-card {
+  flex: 0 0 auto;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  text-align: right;
+  direction: rtl;
+  transition: all 0.3s ease;
+  will-change: transform;
+  animation: bounceIn 0.6s forwards;
+  opacity: 1 !important;
+}
+
+.mission-card:nth-child(1) { animation-delay: 0.2s; }
+.mission-card:nth-child(2) { animation-delay: 0.3s; }
+.mission-card:nth-child(3) { animation-delay: 0.4s; }
+.mission-card:nth-child(4) { animation-delay: 0.5s; }
+.mission-card:nth-child(5) { animation-delay: 0.6s; }
+.mission-card:nth-child(6) { animation-delay: 0.7s; }
+
+.mission-card h5 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.mission-card p {
+  margin: 0.5rem 0;
+  font-weight: 500;
 }
 
 .details-btn {
@@ -46,147 +192,27 @@ h3 {
   text-decoration: none;
   font-size: 0.95rem;
   margin-top: 0.5rem;
-  transition: background-color 0.3s ease;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
 }
 
 .details-btn:hover {
   background-color: #3da043;
+  transform: scale(1.08);
+  animation: none;
 }
 
-
-.app-container {
-  max-width: 420px;
-  padding-bottom: 70px; /* slightly more than .bottom-nav height */
-  min-height: 100dvh;
-  width: 100%;
-  position: relative;
-  background-color: #fff; /* fallback */
-  background-image: url('../assets/images/background.jpg'); /* or sky.png */
-  background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3); /* phone-like card look */
-  border-radius: 12px;
+.details-btn:active {
+  transform: scale(0.95);
 }
-
-
-
-.missions-scroll::-webkit-scrollbar {
-  height: 8px;
-}
-
-.missions-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-
-
-.profile-icon {
-  position: absolute;  /* or fixed, depending on layout */
-  top: 1rem;
-  right: 1rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.profile-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-
-
-
-
-
-.season-intro {
-  background-color: rgba(255, 255, 255, 0.4);
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-}
-
-.season-intro h1 {
-  margin-right: 0.5rem;
-}
-
-
-.season-intro h4 {
-  margin-bottom: 0.5rem;
-}
-
-.season-intro p {
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-
-
-
-
-
-.missions-scroll {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory;
-}
-
-.mission-card {
-  flex: 0 0 auto;
-  min-width: 220px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  scroll-snap-align: start;
-  text-align: left;
-  direction: rtl; 
-  text-align: right; 
-}
-
-.mission-card h5 {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.mission-card p {
-  margin: 0.5rem 0;
-}
-
-.mission-card button {
-  padding: 0.5rem 1rem;
-  background-color: #954bcd;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.mission-card button:hover {
-  background-color: #3da043;
-}
-
-
-
-
-
-
 
 .started-missions {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin: 1.5rem 0 0 1.5rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .started-mission {
@@ -197,12 +223,12 @@ h3 {
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
-.mission-name {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
+.started-mission:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .complete-btn {
@@ -213,10 +239,19 @@ h3 {
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 0.9rem;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
 }
 
 .complete-btn:hover {
   background-color: #1976d2;
+  transform: scale(1.08);
+  animation: none;
+}
+
+.complete-btn:active {
+  transform: scale(0.95);
 }
 
 .no-missions {
@@ -228,25 +263,22 @@ h3 {
   text-align: center;
   margin: 0 1rem;
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  font-weight: 500;
 }
-
-
-
-
-
 
 .leaderboard-spotlight {
   padding: 1.5rem;
   border-radius: 10px;
-  text-align: left;
-  direction: rtl; 
-  text-align: right; 
+  text-align: right;
+  direction: rtl;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.leaderboard-spotlight h4 {
+.leaderboard-spotlight h3 {
   font-size: 1.2rem;
   text-decoration: underline;
   margin-bottom: 1rem;
+  font-weight: 800;
 }
 
 .leaderboard-grid {
@@ -262,9 +294,17 @@ h3 {
   padding: 0.75rem 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  min-width: 0; /* prevents overflow issues */
+  min-width: 0;
+  transition: all 0.3s ease;
+  will-change: transform;
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 1 !important;
 }
 
+.leaderboard-card:nth-child(1) { animation-delay: 0.3s; }
+.leaderboard-card:nth-child(2) { animation-delay: 0.4s; }
+.leaderboard-card:nth-child(3) { animation-delay: 0.5s; }
+.leaderboard-card:nth-child(4) { animation-delay: 0.6s; }
 
 .pfp {
   flex-shrink: 0;
@@ -277,17 +317,16 @@ h3 {
 
 .card-info {
   flex: 1;
-  white-space: nowrap;      
-  overflow: hidden;         
-  text-overflow: ellipsis;  
-  max-width: 100px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }
-
 
 .card-info strong {
   display: block;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
   color: #222;
   line-height: 1.4;
 }
@@ -296,10 +335,13 @@ h3 {
   margin: 0;
   font-size: 0.9rem;
   color: #444;
+  font-weight: 500;
 }
 
+.bottom-nav {
+  animation: fadeIn 0.8s ease-out;
+}
 
-/* Responsive tweaks (optional) */
 @media (max-width: 420px) {
   .mission-card {
     min-width: 200px;
