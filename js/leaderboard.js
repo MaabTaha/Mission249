@@ -1,78 +1,68 @@
-const currentUsername = localStorage.getItem('currentUser');
-const users = JSON.parse(localStorage.getItem('users')) || [];
+document.addEventListener('DOMContentLoaded', function () {
+  // Get current user
+  const currentUsername = localStorage.getItem('currentUser');
+  const realUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-// Check if user is logged in
-if (!currentUsername) {
-  window.location.href = 'index.html';
-} else {
-  const user = users.find(u => u.username === currentUsername);
+  // Create 7 dummy users with Arabic names and random points
+  const dummyUsers = [
+    { username: "محمد أحمد", points: 25 },
+    { username: "مزن علي", points: 50 },
+    { username: "خالد حسن", points: 10 },
+    { username: "نورة عبدالله", points: 45 },
+    { username: "عمر إبراهيم", points: 30 },
+    { username: "لينا مصطفى", points: 40 },
+    { username: "يوسف محمود", points: 15 }
+  ];
 
-  if (!user) {
-    alert('لم يتم العثور على المستخدم. يرجى تسجيل الدخول مرة أخرى.');
-    localStorage.removeItem('currentUser');
-    window.location.href = 'index.html';
+  // Find current user object from real users
+  const currentUserObj = realUsers.find(u => u.username === currentUsername);
+
+  // Combine all users, including current user (if exists), and dummy users
+  const allUsers = [
+    ...realUsers.filter(u => u.username !== currentUsername), // exclude current user for now
+    ...(currentUserObj ? [currentUserObj] : []),               // add current user last (to ensure uniqueness)
+    ...dummyUsers
+  ];
+
+  // Sort all users by points (descending)
+  const sortedUsers = allUsers.sort((a, b) => b.points - a.points);
+
+  // Find current user's rank
+  const currentUserIndex = sortedUsers.findIndex(user => user.username === currentUsername);
+  const currentUserRank = currentUserIndex + 1;
+  const currentUserData = currentUserIndex >= 0 ? sortedUsers[currentUserIndex] : null;
+
+  // Update banner (only if current user exists)
+  if (currentUsername && currentUserData) {
+    document.getElementById('currentUserRank').textContent = currentUserRank;
+    document.getElementById('currentUserName').textContent = currentUsername;
+    document.getElementById('currentRankText').textContent = currentUserRank;
+    document.getElementById('currentUserPoints').textContent = (currentUserData.points || 0) + " نقطة";
   } else {
-    // Create dummy users for ranking calculation
-    const dummyUsers = [
-      { username: "محمد أحمد", points: 250 },
-      { username: "مزن علي", points: 180 },
-      { username: "خالد حسن", points: 150 },
-      { username: "نورة عبدالله", points: 120 },
-      { username: "عمر إبراهيم", points: 90 },
-      { username: "لينا مصطفى", points: 60 },
-      { username: "يوسف محمود", points: 30 }
-    ];
-
-    // Combine real and dummy users
-    const allUsers = [...users, ...dummyUsers];
-    
-    // Sort all users by points (descending)
-    allUsers.sort((a, b) => b.points - a.points);
-    
-    // Find current user's rank
-    const currentUserRank = allUsers.findIndex(u => u.username === currentUsername) + 1;
-
-    // Populate username and location
-    document.getElementById("usernameDisplay").textContent = user.username;
-
-    // Overview section
-    document.getElementById("pointsDisplay").textContent = user.points || 0;
-    document.getElementById("completedCount").textContent = user.totalCompleted || 0;
-
-    // Leaderboard position (now showing actual rank)
-    document.getElementById("rankDisplay").textContent = `#${currentUserRank}`;
-
-    // Completed Missions Section
-    const completedListDiv = document.getElementById("completedList");
-    const completed = user.completedMissions || {};
-
-    if (Object.keys(completed).length === 0) {
-      completedListDiv.innerHTML = `<p style="text-align:center; opacity:0.7;">لا توجد مهام مُنجزة حتى الآن.</p>`;
-    } else {
-      completedListDiv.innerHTML = ""; // Clear previous content
-
-      const missionNames = {
-        "paint-classroom": "طلاء الفصول الدراسية",
-        "add-school": "إضافة المدرسة إلى خرائط قوقل",
-        "clean-classrooms": "تنظيف الفصول والساحات",
-        "donate-supplies": "التبرع بالأدوات المدرسية",
-        "support-meals": "دعم وجبات الطلاب",
-        "decorate-school": "تزيين المدرسة"
-      };
-
-      for (const [missionId, count] of Object.entries(completed)) {
-        const div = document.createElement("div");
-        div.classList.add("completed-mission");
-
-        const name = missionNames[missionId] || "مهمة غير معروفة";
-
-        div.innerHTML = `
-          <span>${name}</span>
-          <span>x${count}</span>
-        `;
-
-        completedListDiv.appendChild(div);
-      }
-    }
+    document.getElementById('userRankBanner').style.display = 'none';
   }
-}
+
+  // Populate leaderboard
+  const leaderboardList = document.getElementById('leaderboardList');
+
+  sortedUsers.forEach((user, index) => {
+    const rank = index + 1;
+    const isCurrentUser = user.username === currentUsername;
+
+    const leaderboardItem = document.createElement('div');
+    leaderboardItem.className = `leaderboard-item ${isCurrentUser ? 'current-user' : ''}`;
+
+    leaderboardItem.innerHTML = `
+      <div class="leaderboard-rank">${rank}</div>
+      <div class="leaderboard-avatar">
+        <img src="assets/images/ProfileIcon.png" alt="${user.username}">
+      </div>
+      <div class="leaderboard-details">
+        <div class="leaderboard-name">${user.username}</div>
+        <div class="leaderboard-points">${user.points || 0} نقطة</div>
+      </div>
+    `;
+
+    leaderboardList.appendChild(leaderboardItem);
+  });
+});
