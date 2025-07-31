@@ -64,7 +64,7 @@ h2 {
 }
 
 .details-link {
-  background-color: #2196f3;
+  background-color: #5d3a81;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -75,7 +75,7 @@ h2 {
 }
 
 .details-link:hover {
-  background-color: #1976d2;
+  background-color: #655576;
   transform: scale(1.08);
 }
 
