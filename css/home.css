@@ -211,7 +211,7 @@ h3 {
 }
 
 .complete-btn {
-  background-color: #2196f3;
+  background-color: #5d3a81;
   color: white;
   border: none;
   border-radius: 6px;
@@ -224,7 +224,7 @@ h3 {
 }
 
 .complete-btn:hover {
-  background-color: #1976d2;
+  background-color: #655576;
   transform: scale(1.08);
   animation: none;
 }
