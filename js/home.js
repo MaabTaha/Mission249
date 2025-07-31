@@ -60,7 +60,7 @@ function renderStartedMissions() {
     btn.addEventListener('click', handleCompleteMission);
   });
 }
-
+ 
 function handleCompleteMission(e) {
   const missionId = e.target.dataset.id;
   const userIndex = users.findIndex(u => u.username === currentUsername);
@@ -77,6 +77,9 @@ function handleCompleteMission(e) {
 
   users[userIndex] = user;
   localStorage.setItem('users', JSON.stringify(users));
+
+  // Show the fun alert message
+  alert(`🪄 تم إضافة +${pointsEarned} نقطة!\n\nعارفنك داير تغشنا وما عملت الميشين لكن عايزين نفرحك 😉`);
 
   const btn = e.target;
   btn.textContent = `+${pointsEarned} نقطة! 🎉`;

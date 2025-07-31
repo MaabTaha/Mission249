@@ -1,95 +1,43 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>لائحة الشرف</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/leaderboard.css" />
-    <link rel="stylesheet" href="css/template.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>لوحة الصدارة - Mission 249</title>
+  <link rel="stylesheet" href="css/template.css">
+  <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 <body>
+  <div class="app-container">
     <a href="dashboard.html" class="profile-icon">
-        <img src="assets/images/ProfileIcon.png" alt="profile icon" />
+      <img src="assets/images/ProfileIcon.png" alt="profile icon">
     </a>
 
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-rocket"></i> لائحة الشرف</h1>
-            <p class="subtitle">اعلى النقاط على مستوى السودان</p>
-        </header>
-
-        <div class="content">
-            <section class="form-section">
-                <h2 class="section-title"><i class="fas fa-tasks"></i> سلم المهمة </h2>
-
-                <form id="missionForm">
-                    <div class="form-group">
-                        <label for="name">اسم اللاعب</label>
-                        <input type="text" id="name" placeholder="أدخل اسمك" required />
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="completed" />
-                        <label for="completed">
-                            <span>✅ تم إكمال المهمة (+5 نقاط)</span>
-                            <i class="fas fa-check-circle" style="color: #4CAF50; margin-right: 10px;"></i>
-                        </label>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="team" />
-                        <label for="team">
-                            <span>🤝 مكافأة العمل الجماعي (+3 نقاط عند إكمال المهمة)</span>
-                            <i class="fas fa-users" style="color: #2196F3; margin-right: 10px;"></i>
-                        </label>
-                    </div>
-
-                    <div class="image-upload-box" id="imageUploadBox">
-                        <i class="fas fa-camera"></i>
-                        <p> معرض الإنجازات!</p>
-                        <img class="preview" id="imagePreview" src="" alt="Preview" />
-                    </div>
-
-                    <div class="score-display">
-                        مجموع نقاطك: <span class="score-value" id="scoreValue">0</span>
-                    </div>
-
-                    <button type="submit" id="submitBtn">
-                        <i class="fas fa-paper-plane"></i> سلم المهمة
-                    </button>
-
-                    <div id="message"></div>
-                </form>
-            </section>
-
-            <section class="leaderboard-section">
-                <h2 class="section-title"><i class="fas fa-trophy"></i> لوحة المتصدرين</h2>
-                <div id="leaderboard">
-                    <table class="leaderboard-table">
-                        <thead>
-                            <tr>
-                                <th width="20%">المركز</th>
-                                <th width="50%">الاسم</th>
-                                <th width="30%">النقاط</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaderboardBody">
-                            <tr>
-                                <td colspan="3" class="loading">
-                                    <span class="loading-spinner"></span> جاري تحميل البيانات...
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+    <div class="app-content">
+      <!-- Current User Rank Banner -->
+      <div class="user-rank-banner" id="userRankBanner">
+        <div class="rank-circle">
+          <span id="currentUserRank">--</span>
         </div>
+        <div class="user-info">
+          <h3 id="currentUserName">اسم المستخدم</h3>
+          <p>أنت في المرتبة <span id="currentRankText">--</span></p>
+        </div>
+        <div class="points-display">
+          <span id="currentUserPoints">0</span>
+        </div>
+      </div>
+
+      <!-- Leaderboard Title -->
+      <h2 class="leaderboard-title">تصنيف اللاعبين</h2>
+
+      <!-- Leaderboard List -->
+      <div class="leaderboard-list" id="leaderboardList">
+        <!-- Filled by JavaScript -->
+      </div>
     </div>
+
+    <!-- Bottom Navigation -->
     <nav class="bottom-nav">
       <a href="home.html" class="nav-item">
         <span class="nav-icon">🏠</span>
@@ -112,8 +60,8 @@
         ملفي الشخصي
       </a>
     </nav>
+  </div>
 
-    <!-- Custom JavaScript -->
-    <script src="js/script.js"></script>
+  <script src="js/leaderboard.js"></script>
 </body>
 </html>

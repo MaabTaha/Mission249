@@ -1,130 +1,61 @@
-const form = document.getElementById('mission-form');
-const nameInput = document.getElementById('name');
-const completedInput = document.getElementById('completed');
-const teamInput = document.getElementById('team');
-const scoreDisplay = document.getElementById('score');
-const message = document.getElementById('message');
-const leaderboardBody = document.getElementById('leaderboard-body');
-const imageUpload = document.getElementById('image-upload');
-const imagePreview = document.getElementById('image-preview');
+document.addEventListener('DOMContentLoaded', function() {
+  // Get current user
+  const currentUser = localStorage.getItem('currentUser');
+  const realUsers = JSON.parse(localStorage.getItem('users')) || [];
+  
+  // Create 7 dummy users with Arabic names and random points
+  const dummyUsers = [
+    { username: "محمد أحمد", points: 25 },
+    { username: "مزن علي", points: 50 },
+    { username: "خالد حسن", points: 10 },
+    { username: "نورة عبدالله", points: 45 },
+    { username: "عمر إبراهيم", points: 30 },
+    { username: "لينا مصطفى", points: 40 },
+    { username: "يوسف محمود", points: 15 }
+  ];
 
-const SHEETDB_API = 'https://sheetdb.io/api/v1/lwj8d3kmgyvym';
-
-// Calculate and update score in real-time
-function updateScore() {
-    let score = 0;
-    if (completedInput.checked) score += 5;
-    if (teamInput.checked) score += 10;
-    scoreDisplay.textContent = score;
-}
-
-// Show message
-function showMessage(text, isSuccess = true) {
-    message.textContent = text;
-    message.className = isSuccess ? 'message-success' : 'message-error';
-    message.style.display = 'block';
-    setTimeout(() => {
-        message.style.display = 'none';
-    }, 4000);
-}
-
-// Handle image preview
-imageUpload.addEventListener('change', () => {
-    const file = imageUpload.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = e => {
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-    }
+  // Combine real and dummy users
+  const allUsers = [...realUsers, ...dummyUsers];
+  
+  // Sort all users by points (descending)
+  const sortedUsers = allUsers.sort((a, b) => b.points - a.points);
+  
+  // Find current user's rank
+  const currentUserIndex = sortedUsers.findIndex(user => user.username === currentUser);
+  const currentUserRank = currentUserIndex + 1;
+  const currentUserData = currentUserIndex >= 0 ? sortedUsers[currentUserIndex] : null;
+  
+  // Update banner (only if current user exists)
+  if (currentUser) {
+    document.getElementById('currentUserRank').textContent = currentUserRank;
+    document.getElementById('currentUserName').textContent = currentUser;
+    document.getElementById('currentRankText').textContent = currentUserRank; // English number
+    document.getElementById('currentUserPoints').textContent = (currentUserData ? currentUserData.points || 0 : 0) + " نقطة";
+  } else {
+    document.getElementById('userRankBanner').style.display = 'none';
+  }
+  
+  // Populate leaderboard
+  const leaderboardList = document.getElementById('leaderboardList');
+  
+  sortedUsers.forEach((user, index) => {
+    const rank = index + 1;
+    const isCurrentUser = user.username === currentUser;
+    
+    const leaderboardItem = document.createElement('div');
+    leaderboardItem.className = `leaderboard-item ${isCurrentUser ? 'current-user' : ''}`;
+    
+    leaderboardItem.innerHTML = `
+      <div class="leaderboard-rank">${rank}</div>
+      <div class="leaderboard-avatar">
+        <img src="assets/images/ProfileIcon.png" alt="${user.username}">
+      </div>
+      <div class="leaderboard-details">
+        <div class="leaderboard-name">${user.username}</div>
+        <div class="leaderboard-points">${user.points || 0} نقطة</div>
+      </div>
+    `;
+    
+    leaderboardList.appendChild(leaderboardItem);
+  });
 });
-
-// Handle form submit
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = nameInput.value.trim();
-    const completed = completedInput.checked;
-    const team = teamInput.checked;
-
-    if (!name) {
-        showMessage('Name is required!', false);
-        return;
-    }
-
-    let score = 0;
-    if (completed) score += 5;
-    if (team) score += 10;
-
-    const data = {
-        name,
-        completed: completed ? 'yes' : 'no',
-        team: team ? 'yes' : 'no',
-        score
-    };
-
-    try {
-        const res = await fetch(SHEETDB_API, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ data })
-        });
-
-        if (res.ok) {
-            showMessage('Submission successful!');
-            form.reset();
-            scoreDisplay.textContent = 0;
-            imagePreview.style.display = 'none';
-            fetchLeaderboard();
-        } else {
-            throw new Error('Failed to submit');
-        }
-    } catch (err) {
-        showMessage(err.message, false);
-    }
-});
-
-// Fetch and display leaderboard
-async function fetchLeaderboard() {
-    leaderboardBody.innerHTML = '<tr><td colspan="4" class="loading">Loading...<span class="loading-spinner"></span></td></tr>';
-
-    try {
-        const res = await fetch(SHEETDB_API);
-        const data = await res.json();
-
-        const sorted = data.sort((a, b) => parseInt(b.score) - parseInt(a.score));
-        leaderboardBody.innerHTML = '';
-
-        sorted.forEach((entry, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td class="rank">${index + 1}</td>
-                <td>${entry.name}</td>
-                <td>${entry.score}</td>
-                <td>${entry.team === 'yes' ? '🤝' : ''} ${entry.completed === 'yes' ? '✅' : ''}</td>
-            `;
-            if (index === 0) {
-                row.classList.add('highlight');
-            }
-            leaderboardBody.appendChild(row);
-        });
-
-        if (sorted.length === 0) {
-            leaderboardBody.innerHTML = '<tr><td colspan="4" class="loading">No data yet.</td></tr>';
-        }
-
-    } catch (err) {
-        leaderboardBody.innerHTML = `<tr><td colspan="4" class="loading">Error loading data</td></tr>`;
-    }
-}
-
-// Real-time score update
-completedInput.addEventListener('change', updateScore);
-teamInput.addEventListener('change', updateScore);
-
-// Initial load
-fetchLeaderboard();

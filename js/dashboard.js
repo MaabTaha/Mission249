@@ -12,6 +12,26 @@ if (!currentUsername) {
     localStorage.removeItem('currentUser');
     window.location.href = 'index.html';
   } else {
+    // Create dummy users for ranking calculation
+    const dummyUsers = [
+    { username: "محمد أحمد", points: 25 },
+    { username: "مزن علي", points: 50 },
+    { username: "خالد حسن", points: 10 },
+    { username: "نورة عبدالله", points: 45 },
+    { username: "عمر إبراهيم", points: 30 },
+    { username: "لينا مصطفى", points: 40 },
+    { username: "يوسف محمود", points: 15 }
+    ];
+
+    // Combine real and dummy users
+    const allUsers = [...users, ...dummyUsers];
+    
+    // Sort all users by points (descending)
+    allUsers.sort((a, b) => b.points - a.points);
+    
+    // Find current user's rank
+    const currentUserRank = allUsers.findIndex(u => u.username === currentUsername) + 1;
+
     // Populate username and location
     document.getElementById("usernameDisplay").textContent = user.username;
 
@@ -19,8 +39,8 @@ if (!currentUsername) {
     document.getElementById("pointsDisplay").textContent = user.points || 0;
     document.getElementById("completedCount").textContent = user.totalCompleted || 0;
 
-    // Leaderboard position (placeholder)
-    document.getElementById("rankDisplay").textContent = "#--";
+    // Leaderboard position (now showing actual rank)
+    document.getElementById("rankDisplay").textContent = `#${currentUserRank}`;
 
     // Completed Missions Section
     const completedListDiv = document.getElementById("completedList");
