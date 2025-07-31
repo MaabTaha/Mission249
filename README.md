@@ -1,8 +1,8 @@
-# Mission 249 🌍🇸🇩
+# Mission 249 
 
 **Mission 249** is a prototype for a simple web app that encourages Sudanese youth to engage in volunteering and help rebuild their communities after the war by completing daily missions in a fun and accessible way.
 
-Live demo: [https://maabtaha.github.io/Mission249/home.html](https://maabtaha.github.io/Mission249/home.html)
+Live demo: [https://maabtaha.github.io/Mission249/]
 
 ---
 
@@ -25,7 +25,7 @@ The app idea is based on making community participation easier by allowing users
 ## Tech Stack
 
 - **Frontend:** HTML + CSS + JavaScript (Vanilla)
-- **Backend (optional):** Supabase (authentication and storage)
+- **Backend:** Supabase (authentication and storage)
 - **Data Storage:** LocalStorage (for offline-first experience)
 - **Hosting:** GitHub Pages
 
