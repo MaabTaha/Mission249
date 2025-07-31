@@ -7,42 +7,40 @@
     <link rel="stylesheet" href="css/template.css" />
     <link rel="stylesheet" href="css/missions.css" />
   </head>
-
+  
   <body>
-  <div class="app-container">
+  <div class="app-container fade-in">
     <a href="dashboard.html" class="profile-icon">
       <img src="assets/images/ProfileIcon.png" alt="profile icon" />
     </a>
 
-      <div class="app-content">
-        <h2>مهام الموسم الأول</h2>
-        <div class="all-missions" id="missionsList"></div>
-      </div>
-
-    <nav class="bottom-nav">
-      <a href="home.html" class="nav-item">
-        <span class="nav-icon">🏠</span>
-        الرئيسية
-      </a>
-      <a href="leaderboard.html" class="nav-item">
-        <span class="nav-icon">🏆</span>
-        لوحة الصدارة
-      </a>
-      <a href="missions.html" class="nav-item active">
-        <span class="nav-icon">📋</span>
-        المهام
-      </a>
-      <a href="map.html" class="nav-item">
-        <span class="nav-icon">🗺️</span>
-        الخريطة
-      </a>
-      <a href="dashboard.html" class="nav-item">
-        <span class="nav-icon">👤</span>
-        ملفي الشخصي
-      </a>
-    </nav>
+    <div class="app-content slide-in-up">
+      <h2 class="fade-in">مهام الموسم الأول</h2>
+      <div class="all-missions slide-in-up" id="missionsList"></div>
     </div>
 
-    <script src="js/missions.js" defer></script>
+    <nav class="bottom-nav fade-in">
+      <a href="home.html" class="nav-item">الرئيسية</a>
+      <a href="leaderboard.html" class="nav-item">لوحة الصدارة</a>
+      <a href="missions.html" class="nav-item active">المهام</a>
+      <a href="map.html" class="nav-item">الخريطة</a>
+      <a href="dashboard.html" class="nav-item">ملفي الشخصي</a>
+    </nav>
+  </div>
+
+  <script src="js/missions.js" defer></script>
+  <script>
+    // Ensure all mission rows and their text get fade-in after rendering
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.mission-row').forEach(row => {
+          row.classList.add('fade-in');
+          row.querySelectorAll('h4, p').forEach(child => {
+            child.classList.add('fade-in');
+          });
+        });
+      }, 100);
+    });
+  </script>
   </body>
 </html>
