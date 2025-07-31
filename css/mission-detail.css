@@ -89,7 +89,7 @@ p {
 }
 
 .button-group button {
-  background-color: #4caf50;
+  background-color: #5d3a81;
   color: white;
   border: none;
   border-radius: 8px;
@@ -100,5 +100,5 @@ p {
 }
 
 .button-group button:hover {
-  background-color: #3e9c42;
+  background-color: #655576;
 }
