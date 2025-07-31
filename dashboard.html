@@ -1,129 +1,64 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   <head>
-  <meta charset="UTF-8" />
-  <title>Dashboard - Mission 249</title>
-   <link rel="stylesheet" href="css/dashboard.css" />
-  <link rel="stylesheet" href="css/template.css" />
-</head>
-<body>
-  <div class="app-container">
-    <!-- Back Button (optional)-->
+    <meta charset="UTF-8" />
+    <title>ملفي الشخصي - Mission 249</title>
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/template.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Back Button -->
+      <a href="home.html" class="back-btn">←</a>
 
-    <a href="home.html" class="back-btn">←</a>
-    <br>
-    
-    <!-- <a href="home.html" class="back-btn">←</a> -->
+      <div class="app-content">
+        <!-- Profile Section -->
+        <div class="profile-section">
+          <img src="assets/images/ProfileIcon.png" alt="Profile Icon" class="profile-pic" />
+          <p class="username" id="usernameDisplay"><b>اسم المستخدم</b></p>
+          <p class="location"><b>الموقع: السماء الأحمر</b></p>
 
-    <div class="app-content">
+          <div class="social-icons">
+            <img src="assets/images/instagram_icon.png" alt="Instagram" class="social-media-icon" />
+            <img src="assets/images/facebook_icon.png" alt="Facebook" class="social-media-icon" />
+          </div>
+        </div>
 
-    <!-- Profile Section -->
-    <div class="profile-section">
-      <img src="assets/images/ProfileIcon.png" alt="Profile Icon" class="profile-pic" />
-      <p class="username" id="usernameDisplay"> <b>اسم المستخدم</b></p>
-      <p class="location"> <b> الموقع : السماء الأحمر</b> </p>
-      <div class="social-icons">
-        <img src="assets/images/instagram_icon.png" alt="Instagram" class="social-media-icon" />
-        <img src="assets/images/facebook_icon.png" alt="Facebook" class="social-media-icon" />
+        <!-- Overview Section -->
+        <h3>نظرة عامة</h3>
+        <div class="overview-container">
+          <div class="overview-card">
+            <h4>النقاط</h4>
+            <h2 id="pointsDisplay">0</h2>
+          </div>
+          <div class="overview-card">
+            <h4>المهام المُنجزة</h4>
+            <h2 id="completedCount">0</h2>
+          </div>
+          <div class="overview-card">
+            <h4>الترتيب في لوحة الصدارة</h4>
+            <h2 id="rankDisplay">#--</h2>
+          </div>
+        </div>
+
+        <!-- Completed Missions -->
+        <h3>المهام المُنجزة</h3>
+        <div id="completedList" class="completed-missions-list">
+          <!-- Filled by dashboard.js -->
+        </div>
+        
       </div>
-    </div>
-  
-    
-    <!-- Overview Section -->
-    <h3>Overview</h3>
-    <div class="overview-container">
-      <div class="overview-card">
-        <h4>Points</h4>
-        <h2 id="pointsDisplay">0</h2>
-      </div>
-      <div class="overview-card">
-        <h4>Completed Missions</h4>
-        <h2 id="completedCount">0</h2>
-      </div>
-      <div class="overview-card">
-        <h4>Leaderboard Position</h4>
-        <h2 id="rankDisplay">#--</h2>
-      </div>
-    </div>
-  
-    <!-- Completed Missions Section -->
-    <h3>Completed Missions</h3>
-    <ul id="completedList" class="completed-missions-list">
-      <!-- JS will populate this -->
-    </ul>
-    </div>
-  
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
         <a href="home.html" class="nav-item">الرئيسية</a>
         <a href="leaderboard.html" class="nav-item">لوحة الصدارة</a>
         <a href="missions.html" class="nav-item">المهام</a>
         <a href="map.html" class="nav-item">الخريطة</a>
         <a href="dashboard.html" class="nav-item active">ملفي الشخصي</a>
-    </nav>
-  
+      </nav>
+    </div>
+
     <script src="js/dashboard.js" defer></script>
-  </div>
-</body>
+  </body>
 </html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Dashboard - Mission 249</title>
-      <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <a href="dashboard.html" class="profile-icon-dashboard">
-            <img src="assets/images/ProfileIcon.png" alt="profile icon">
-        </a>
-
-        <p>Username</p>
-        <p>الموقع: السما الاحمر</p>
-        <img src="assets/images/facebook_icon.png" alt="facebook icon" class="social-media-icon">
-        <img src="assets/images/instagram_icon.png" alt="instagram icon" class="social-media-icon">
-
-
-        <h3>Overview</h3>
-        <div class="overview-container">
-            <div class="overview-card">
-                <h4>Points</h4>
-                <h2>58</h2>
-            </div>
-
-            <div class="overview-card">
-                <h4>Completed Missions</h4>
-                <h2>6</h2>
-            </div>
-
-            <div class="overview-card">
-                <h4>LeaderBoard Position</h4>
-                <h2>#16</h2>
-            </div>
-        </div>
-
-        <h3>Completed Missions</h3>
-
-
-
-
-
-
-
-
-
-        <nav class="bottom-nav">
-          <a href="home.html" class="nav-item">Home</a>
-          <a href="leaderboard.html" class="nav-item">Leaderboard</a>
-          <a href="missions.html" class="nav-item">Missions</a>
-          <a href="map.html" class="nav-item">Map</a>
-          <a href="dashboard.html" class="nav-item">Dashboard</a>
-        </nav>
-      <script src="js/dashboard.js" defer></script>
-
-    </body>
-</html> -->
