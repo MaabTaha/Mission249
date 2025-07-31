@@ -1,66 +1,3 @@
-<<<<<<< HEAD
-document.addEventListener('DOMContentLoaded', function() {
-  // Get current user
-  const currentUser = localStorage.getItem('currentUser');
-  const realUsers = JSON.parse(localStorage.getItem('users')) || [];
-  
-  // Create 7 dummy users with Arabic names and random points
-  const dummyUsers = [
-    { username: "محمد أحمد", points: 25 },
-    { username: "مزن علي", points: 50 },
-    { username: "خالد حسن", points: 10 },
-    { username: "نورة عبدالله", points: 45 },
-    { username: "عمر إبراهيم", points: 30 },
-    { username: "لينا مصطفى", points: 40 },
-    { username: "يوسف محمود", points: 15 }
-  ];
-
-  // Combine real and dummy users
-  const allUsers = [...realUsers, ...dummyUsers];
-  
-  // Sort all users by points (descending)
-  const sortedUsers = allUsers.sort((a, b) => b.points - a.points);
-  
-  // Find current user's rank
-  const currentUserIndex = sortedUsers.findIndex(user => user.username === currentUser);
-  const currentUserRank = currentUserIndex + 1;
-  const currentUserData = currentUserIndex >= 0 ? sortedUsers[currentUserIndex] : null;
-  
-  // Update banner (only if current user exists)
-  if (currentUser) {
-    document.getElementById('currentUserRank').textContent = currentUserRank;
-    document.getElementById('currentUserName').textContent = currentUser;
-    document.getElementById('currentRankText').textContent = currentUserRank; // English number
-    document.getElementById('currentUserPoints').textContent = (currentUserData ? currentUserData.points || 0 : 0) + " نقطة";
-  } else {
-    document.getElementById('userRankBanner').style.display = 'none';
-  }
-  
-  // Populate leaderboard
-  const leaderboardList = document.getElementById('leaderboardList');
-  
-  sortedUsers.forEach((user, index) => {
-    const rank = index + 1;
-    const isCurrentUser = user.username === currentUser;
-    
-    const leaderboardItem = document.createElement('div');
-    leaderboardItem.className = `leaderboard-item ${isCurrentUser ? 'current-user' : ''}`;
-    
-    leaderboardItem.innerHTML = `
-      <div class="leaderboard-rank">${rank}</div>
-      <div class="leaderboard-avatar">
-        <img src="assets/images/ProfileIcon.png" alt="${user.username}">
-      </div>
-      <div class="leaderboard-details">
-        <div class="leaderboard-name">${user.username}</div>
-        <div class="leaderboard-points">${user.points || 0} نقطة</div>
-      </div>
-    `;
-    
-    leaderboardList.appendChild(leaderboardItem);
-  });
-});
-=======
 const currentUsername = localStorage.getItem('currentUser');
 const users = JSON.parse(localStorage.getItem('users')) || [];
 
@@ -75,6 +12,26 @@ if (!currentUsername) {
     localStorage.removeItem('currentUser');
     window.location.href = 'index.html';
   } else {
+    // Create dummy users for ranking calculation
+    const dummyUsers = [
+      { username: "محمد أحمد", points: 250 },
+      { username: "مزن علي", points: 180 },
+      { username: "خالد حسن", points: 150 },
+      { username: "نورة عبدالله", points: 120 },
+      { username: "عمر إبراهيم", points: 90 },
+      { username: "لينا مصطفى", points: 60 },
+      { username: "يوسف محمود", points: 30 }
+    ];
+
+    // Combine real and dummy users
+    const allUsers = [...users, ...dummyUsers];
+    
+    // Sort all users by points (descending)
+    allUsers.sort((a, b) => b.points - a.points);
+    
+    // Find current user's rank
+    const currentUserRank = allUsers.findIndex(u => u.username === currentUsername) + 1;
+
     // Populate username and location
     document.getElementById("usernameDisplay").textContent = user.username;
 
@@ -82,8 +39,8 @@ if (!currentUsername) {
     document.getElementById("pointsDisplay").textContent = user.points || 0;
     document.getElementById("completedCount").textContent = user.totalCompleted || 0;
 
-    // Leaderboard position (placeholder)
-    document.getElementById("rankDisplay").textContent = "#--";
+    // Leaderboard position (now showing actual rank)
+    document.getElementById("rankDisplay").textContent = `#${currentUserRank}`;
 
     // Completed Missions Section
     const completedListDiv = document.getElementById("completedList");
@@ -119,7 +76,3 @@ if (!currentUsername) {
     }
   }
 }
-
-
-
->>>>>>> 1c7fe2272a71a2fe6d168df0487fa4017d98f0be
