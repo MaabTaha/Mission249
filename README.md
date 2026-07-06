@@ -5,7 +5,6 @@
 A prototype web app that encourages Sudanese youth to volunteer and help rebuild their communities through simple, gamified daily missions.
 
 **Live demo:** https://maabtaha.github.io/Mission249/
-**Repo:** https://github.com/MaabTaha/Mission249
 
 ## Overview
 
