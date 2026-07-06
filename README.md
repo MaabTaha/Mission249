@@ -1,34 +1,39 @@
-# Mission 249 
+# Mission249
 
-**Mission 249** is a prototype for a simple web app that encourages Sudanese youth to engage in volunteering and help rebuild their communities after the war by completing daily missions in a fun and accessible way.
+🏆 3rd Place — Hackathon
 
-Live demo: [https://maabtaha.github.io/Mission249/]
+A prototype web app that encourages Sudanese youth to volunteer and help rebuild their communities through simple, gamified daily missions.
 
----
+**Live demo:** https://maabtaha.github.io/Mission249/
 
-## About the Project
+## Overview
 
-The app idea is based on making community participation easier by allowing users to sign up with just a username and complete small volunteering missions.
----
+Users sign up with just a username, complete small volunteering missions, upload photo/video proof, and earn points. Includes a leaderboard and offline support.
 
 ## Features
 
-- Sign up and login using just a username
+- Username-only sign up / login
 - Points system for completed missions
-- Fully in Arabic, beginner-friendly interface
-- Leaderboard to display top users
-- Works offline and stores user data locally
+- Arabic-first, beginner-friendly UI
+- Leaderboard
+- Offline support via LocalStorage
 - AI verification of image proof (planned)
-
----
 
 ## Tech Stack
 
-- **Frontend:** HTML + CSS + JavaScript (Vanilla)
-- **Backend:** Supabase (authentication and storage)
-- **Data Storage:** LocalStorage (for offline-first experience)
+- **Frontend:** HTML, CSS, JavaScript (Vanilla)
+- **Backend:** Supabase (auth + storage)
+- **Local Storage:** LocalStorage (offline-first)
 - **Hosting:** GitHub Pages
 
+## Roadmap
 
+- Mobile app with full offline-first support
+- On-device AI image verification (TensorFlow Lite / MediaPipe)
+- Digital certificates + team features
+- Additional mission categories (education, healthcare, emotional support)
+- Partnerships with local orgs/schools for real missions
 
+## Built With
 
+HTML · CSS · JavaScript · Supabase · OpenStreetMap
